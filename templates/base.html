@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dr Dennis Henry | Award-Winning Dermatologist, World Records & Skin Specialist in Bilaspur{% endblock %}</title>
+    <meta name="description" content="Explore Dr. Dennis Henry's dermatology credentials, three world-record achievements including a Guinness World Records-related recognition/attempt, MNAMS, national and international conference faculty roles, awards, publications and aesthetic training. Based in Bilaspur, Chhattisgarh.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://ushamemorial.co.in/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dr Dennis Henry | Dermatology, Awards & Academic Contributions">
+    <meta property="og:description" content="Learn about Dr. Dennis Henry's world-record achievements, MNAMS, conference faculty work, dermatology awards, book and professional leadership.">
+    <meta property="og:url" content="https://ushamemorial.co.in/">
+    {% block structured_data %}{% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=6">
+    <style>
+        :root {
+            --sage-100: #E8EFE8;
+            --sage-200: #D4E8CD;
+            --sage-300: #AFC1AB;
+            --sage-400: #AEC0AA;
+            --sage-500: #8FA88C;
+        }
+        .bg-sage { background-color: var(--sage-200) !important; }
+        .bg-sage-light { background-color: var(--sage-100) !important; }
+        .text-sage { color: var(--sage-300) !important; }
+        .border-sage { border-color: var(--sage-300) !important; }
+    </style>
+</head>
+<body class="bg-white" style="overflow-x: hidden;">
+    {% block content %}{% endblock %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/static/script.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,951 @@
+{% extends "base.html" %}
+
+{% block title %}Dr Dennis Henry | Awards, World Records & Dermatology in Bilaspur{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top" id="navbar" style="padding: 8px 0;">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="/static/img/logo.jpg" alt="Dr Henry's Skin Clinic" height="45" class="rounded-3 shadow">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#doctors">Our Doctors</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#recognition">Awards & Recognition</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="/chatbot">AI Bot</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section position-relative overflow-hidden" style="min-height: 100vh; display: flex; align-items: center;">
+    <div class="position-absolute top-0 start-0 w-100 h-100">
+        <img src="/static/img/ushamemorial.jpeg" alt="Hero Background" class="w-100 h-100 object-fit-cover">
+    </div>
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(20,30,25,0.88) 0%, rgba(35,50,40,0.82) 50%, rgba(25,40,30,0.85) 100%);"></div>
+    <div class="position-absolute w-100 h-100" style="top: 10%; left: 5%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(175,193,171,0.15) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite;"></div>
+    <div class="position-absolute w-100 h-100" style="bottom: 15%; right: 10%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(143,168,140,0.12) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite 1s;"></div>
+    <div class="position-relative z-2 container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                <div class="mb-4" data-aos="fade-down" data-aos-delay="200">
+                    <span class="badge bg-sage text-dark fs-6 px-4 py-2 rounded-pill">
+                        <i class="fas fa-certificate me-2"></i>ISO 9001:2015 Certified Clinic
+                    </span>
+                </div>
+                <h1 class="display-2 fw-bold mb-4" style="color: #ffffff; line-height: 1.2;" data-aos="fade-up" data-aos-delay="300">
+                    <span style="color: #ffffff;">Dr Henry's</span><br>
+                    <span class="text-sage" style="font-size: 0.85em;">Skin Clinic</span>
+                </h1>
+                <p class="lead mb-4 fw-medium" style="font-size: 1.1rem; max-width: 500px; color: rgba(255,255,255,0.9);" data-aos="fade-up" data-aos-delay="400">
+                    Your trusted destination for advanced dermatology, cosmetology, and skin care treatments in Bilaspur, Chhattisgarh.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#contact" class="btn btn-sage btn-lg px-4 rounded-pill shadow-sm" style="transition: all 0.3s;">
+                        <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                    </a>
+                    <a href="#services" class="btn btn-outline-light btn-lg px-4 rounded-pill" style="transition: all 0.3s;">
+                        Our Services
+                    </a>
+                </div>
+                <div class="d-flex align-items-center gap-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="fw-semibold text-white">5.0 Rating</span>
+                    </div>
+                    <div class="vr" style="background: rgba(255,255,255,0.3);"></div>
+                    <div class="d-flex gap-2">
+                        <a href="https://www.instagram.com/dr.henrys.dermatology?igsh=MWFidXpiYjQzYnIzcQ==" class="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white text-decoration-none" style="width: 40px; height: 40px; transition: all 0.3s;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white text-decoration-none" style="width: 40px; height: 40px; transition: all 0.3s;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/919770048965" class="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white text-decoration-none" style="width: 40px; height: 40px; transition: all 0.3s;"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block" data-aos="fade-left" data-aos-duration="1200">
+                <div class="text-white" style="animation: float 6s ease-in-out infinite;">
+                    <h2 class="fw-bold display-4 mb-3" style="line-height: 1.3;">A Legacy of <span class="text-sage">25 Years</span> in Skin Care</h2>
+                    <p class="fs-5 mb-4" style="color: rgba(255,255,255,0.85);">In Bilaspur.</p>
+                    <div class="bg-white bg-opacity-10 rounded-4 p-4 backdrop-blur">
+                        <h4 class="mb-2" style="color: var(--sage-300);"><i class="fas fa-hospital me-2"></i>Usha Memorial Skin & Eye Hospital</h4>
+                        <p class="mb-0" style="color: rgba(255,255,255,0.8);"><i class="fas fa-map-marker-alt me-2 text-sage"></i>Mungeli Naka, Bilaspur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4" style="animation: bounce 2s infinite;">
+        <a href="#about" class="text-white fs-2 d-flex align-items-center justify-content-center rounded-circle bg-white bg-opacity-10 shadow-sm" style="width: 50px; height: 50px; transition: all 0.3s;">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </div>
+</section>
+
+<style>
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotateY(-5deg) rotateX(5deg); }
+    50% { transform: translateY(-20px) rotateY(-5deg) rotateX(5deg); }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+</style>
+
+<!-- About Section -->
+<section id="about" class="py-5 bg-sage-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Welcome to <span class="text-sage">Usha Memorial Skin & Eye Hospital</span></h2>
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                <img src="/static/img/clinic.jpeg" alt="About Clinic" class="img-fluid rounded-4 shadow-lg">
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <h3 class="fw-bold mb-3">Excellence in Skin Care</h3>
+                <p class="text-muted mb-3">Located in the heart of Bilaspur, Chhattisgarh, Dr Henry's Skin Clinic is a premier dermatology center offering comprehensive skin care solutions. Our state-of-the-art facility combines advanced technology with expert medical care to provide you with the best possible results.</p>
+                <p class="text-muted mb-4">With a team of highly qualified dermatologists specializing in various fields, we offer personalized treatment plans tailored to your unique skin needs. From routine skin consultations to advanced laser treatments and cosmetic procedures, we cover all aspects of dermatological care.</p>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="bg-white rounded-3 p-3 shadow-sm">
+                            <i class="fas fa-certificate fs-4 text-sage"></i>
+                            <p class="fw-bold mb-0 mt-2">ISO Certified</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-white rounded-3 p-3 shadow-sm">
+                            <i class="fas fa-user-md fs-4 text-sage"></i>
+                            <p class="fw-bold mb-0 mt-2">Expert Doctors</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-white rounded-3 p-3 shadow-sm">
+                            <i class="fas fa-hospital fs-4 text-sage"></i>
+                            <p class="fw-bold mb-0 mt-2">Modern Equipment</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-white rounded-3 p-3 shadow-sm">
+                            <i class="fas fa-heart fs-4 text-sage"></i>
+                            <p class="fw-bold mb-0 mt-2">Patient Care</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Henry Sir Highlight Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
+                <div class="position-relative">
+                    <img src="/static/img/owners.jpeg" alt="Dr. Dennis Henry" class="img-fluid rounded-4 shadow-lg" style="max-width: 100%; border: 4px solid var(--sage-300);">
+                    <div class="position-absolute" style="top: -15px; right: -15px; width: 80px; height: 80px; background: var(--sage-300); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-award fs-3 text-dark"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <span class="badge bg-sage text-dark fs-6 px-3 py-2 rounded-pill mb-3">
+                    <i class="fas fa-crown me-2"></i>Excellence in Dermatology
+                </span>
+                <h2 class="fw-bold text-white mb-4" style="font-size: 2.5rem; line-height: 1.3;">
+                    One of the Most Qualified <span class="text-sage">Dermatologists</span> of Chhattisgarh
+                </h2>
+                 <p class="text-light opacity-75 mb-4" style="font-size: 1.1rem;">
+                     <strong>Dr. David Henry</strong> (MBBS, DVD, MPH (USA)) is senior most  dermatologist in town with 30+ years of experience
+                </p>
+                
+                <p class="text-light opacity-75 mb-4" style="font-size: 1.1rem;">
+                     <strong>Dr. Daniel Henry</strong> (MBBS, MD, FAAD, MRCP) has served as secretary IADVL bilaspur and president bilaspur dermatology society and is involved in social work, seeing infections diseases and has great experience with STD (Sexually Transmitted Diseases Specialist)
+                </p>
+
+                <p class="text-light opacity-75 mb-4" style="font-size: 1.1rem;">
+                    <strong>Dr. Dennis Henry</strong> is an experienced specialist in dermatology, dermato-surgery, and aesthetic medicine. With prestigious international qualifications including M.D (DVL), DNB (DVL), F.A.A.D (USA), and MRCP (London), he is recognized as one of the most highly qualified dermatologists in the region.
+                </p>
+                
+                <div class="d-flex align-items-center gap-2 mb-4 p-3 rounded-3" style="background: rgba(175, 193, 171, 0.15); border: 1px solid rgba(175, 193, 171, 0.3);">
+                    <i class="fas fa-award text-sage fs-4"></i>
+                    <span class="text-white fw-semibold" style="font-size: 1.1rem;">Secretary Elect of <span class="text-sage">Bilaspur Society of Dermatology</span></span>
+                </div>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-6">
+                        <div class="bg-white bg-opacity-10 rounded-3 p-3 backdrop-blur">
+                            <i class="fas fa-graduation-cap text-sage fs-4 mb-2"></i>
+                            <p class="text-white fw-bold mb-0">International Degrees</p>
+                            <p class="text-light opacity-75 small mb-0">F.A.A.D (USA), MRCP (London)</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-white bg-opacity-10 rounded-3 p-3 backdrop-blur">
+                            <i class="fas fa-user-md text-sage fs-4 mb-2"></i>
+                            <p class="text-white fw-bold mb-0">25+ Years</p>
+                            <p class="text-light opacity-75 small mb-0">Clinical Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-sage btn-lg px-4 rounded-pill shadow-sm">
+                    <i class="fas fa-calendar-check me-2"></i>Book Consultation
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Video Section -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Watch Our <span class="text-sage">Introduction</span></h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Learn more about our clinic and services</p>
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10" data-aos="zoom-in">
+                <div class="ratio ratio-16x9 rounded-4 shadow-lg overflow-hidden">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/i-wiInR1wFY?autoplay=1&si=kPr-RXEj1gYs2Pnw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Doctors Section -->
+<section id="doctors" class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Meet Our <span class="text-sage">Expert Doctors</span></h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Our team of highly qualified dermatologists brings years of experience and expertise from around the world.</p>
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Doctor 1 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card border-0 shadow-lg h-100 doctor-card">
+                    <div class="position-relative" style="height: 350px; overflow: hidden;">
+                        <img src="./static/img/david.jpeg" alt="Dr. David Henry" class="w-100 h-100 object-fit-cover">
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-gradient-to-top from-dark to-transparent p-3">
+                            <span class="badge bg-sage text-dark">Senior Dermatologist</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fw-bold">Dr. David Henry</h5>
+                        <p class="text-sage fw-semibold mb-2">M.B.B.S | D.V.D | M.P.H (U.S.A)</p>
+                        <p class="text-muted small">Senior Dermatologist with extensive experience in treating complex skin conditions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor 2 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card border-0 shadow-lg h-100 doctor-card">
+                    <div class="position-relative" style="height: 350px; overflow: hidden;">
+                        <img src="/static/img/danial.jpeg" alt="Dr. Daniel Henry" class="w-100 h-100 object-fit-cover">
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-gradient-to-top from-dark to-transparent p-3">
+                            <span class="badge bg-sage text-dark">Sexually Transmitted Diseases Specialist</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fw-bold">Dr. Daniel Henry</h5>
+                        <p class="text-sage fw-semibold mb-2">M.B.B.S | M.D | F.A.A.D</p>
+                        <p class="text-muted small">Founder of Bilaspur Society of Dermatology. Expert in treating infections, melasma, acne.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor 3 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card border-0 shadow-lg h-100 doctor-card">
+                    <div class="position-relative" style="height: 350px; overflow: hidden;">
+                        <img src="/static/img/henry_sir_img.jpeg" alt="Dr. Dennis Henry" class="w-100 h-100">
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-gradient-to-top from-dark to-transparent p-3">
+                            <span class="badge bg-sage text-dark">Dermato-Surgeon
+</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fw-bold">Dr. Dennis Henry</h5>
+                        <p class="text-sage fw-semibold mb-2">M.B.B.S | M.D | DNB | MRCP | F.A.A.D | N.M.A.M.S</p>
+                        <p class="text-muted small">Dermato-surgeon, cosmetologist, and aesthetician with international training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Awards, Recognition & Academic Contributions: targeted content addition; existing design and assets retained -->
+<!-- Awards, Recognition & Academic Contributions -->
+<section id="recognition" class="py-5 bg-white" aria-labelledby="recognition-title">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="badge bg-sage text-dark px-3 py-2 rounded-pill mb-3">
+                <i class="fas fa-award me-2"></i>Professional Milestones
+            </span>
+
+            <h2 id="recognition-title" class="fw-bold">
+                Dr. Dennis Henry:
+                <span class="text-sage">Awards, World Records & Academic Contributions</span>
+            </h2>
+
+            <p class="text-muted mx-auto" style="max-width: 780px;">
+                Alongside clinical practice, Dr. Dennis Henry contributes to dermatology
+                through professional education, conference faculty roles, product advisory
+                work, authorship and leadership in dermatology associations.
+            </p>
+
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+
+        <div class="row g-4 mb-4">
+
+            <!-- World Records -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/world-record-certificates.jpg"
+                        alt="Dr. Dennis Henry with world-record certificates"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">Three World-Record Achievements</h3>
+                    <p class="text-muted mb-0">
+                        Dr. Dennis Henry reports three world-record achievements,
+                        including a Guinness World Records-related recognition or attempt.
+                        Official record titles and verification links can be added once confirmed.
+                    </p>
+                </article>
+            </div>
+
+            <!-- MNAMS -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="75">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/world-record-certificates.jpg"
+                        alt="Dr. Dennis Henry with professional certificates"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">MNAMS Recognition</h3>
+                    <p class="text-muted mb-0">
+                        Recently awarded MNAMS, as shared by Dr. Henry.
+                        The exact credential details should match the official certificate.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Young Dermatologist Award -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/young-dermatologist-award.jpg"
+                        alt="Dr. Dennis Henry receiving the Young Dermatologist Award"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">Young Dermatologist Award — 2025</h3>
+                    <p class="text-muted mb-0">
+                        Recognised with a state-level Young Dermatologist Award in 2025.
+                        He also received first prize at CG Cuticon 2022.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Conference Faculty -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/dermacon-2026.jpg"
+                        alt="Dr. Dennis Henry participating in a dermatology conference"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">National & International Faculty</h3>
+                    <p class="text-muted mb-0">
+                        Speaker and faculty at dermatology meetings, including DERMACON,
+                        the Association of Cutaneous Surgeons of India (ACSI) conference,
+                        and the Asian Dermatology Masterclass in Malaysia.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Laser Training -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="75">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/laser-lecture-2026.jpg"
+                        alt="Dr. Dennis Henry presenting a laser dermatology lecture"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">Laser Education & International Training</h3>
+                    <p class="text-muted mb-0">
+                        Trained in aesthetic procedures in Thailand and the United States.
+                        Serves as a laser trainer in Chhattisgarh and teaches dermatology
+                        colleagues across India.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Professional Leadership -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/acsi-conference-2026.jpg"
+                        alt="Dr. Dennis Henry at a dermatology conference"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">Professional Leadership</h3>
+                    <p class="text-muted mb-0">
+                        Professional roles in the Bilaspur Society of Dermatology and
+                        the Indian Association of Dermatology, Chhattisgarh, including
+                        academic teaching and state-level conference responsibilities.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Book -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/dermatology-magazine-feature.jpg"
+                        alt="Magazine feature about Dr. Dennis Henry"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">Author of <em>The Indian Skin</em></h3>
+                    <p class="text-muted mb-0">
+                        Author of <em>The Indian Skin</em>, available on Amazon.
+                        Verified book listings and award nomination details can be
+                        linked here to support online discovery.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Product Advisory -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="75">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/dermatology-magazine-feature.jpg"
+                        alt="Dermatology publication and professional feature"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">Product Advisory & Formulation</h3>
+                    <p class="text-muted mb-0">
+                        Contributes dermatology expertise to product advisory work,
+                        including face-wash formulation. Add verified product details
+                        and official links when available.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Professional Recognition -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <article class="card border-0 shadow-sm rounded-4 h-100 p-4 achievement-card">
+                    <img
+                        class="achievement-photo"
+                        src="/static/img/achievements/international-conference-faculty.jpg"
+                        alt="Dr. Dennis Henry at an international professional event"
+                        loading="lazy"
+                    >
+                    <div class="text-sage fs-2 mb-3">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="h5 fw-bold">International Professional Recognition</h3>
+                    <p class="text-muted mb-0">
+                        Selected for the Young Turk Award by Southeast Asian countries
+                        in December 2024, as reported by Dr. Henry.
+                    </p>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Recent Update Section -->
+<section class="py-5 bg-sage-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Recent <span class="text-sage">Update</span></h2>
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
+                <div class="position-relative">
+                    <img src="/static/img/henry_sir_new_img.jpeg" alt="Dr. Dennis Henry" class="img-fluid rounded-4 shadow-lg" style="max-width: 100%; border: 4px solid var(--sage-300);">
+                    <div class="position-absolute" style="top: -15px; right: -15px; width: 80px; height: 80px; background: var(--sage-300); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-award fs-3 text-dark"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <span class="badge bg-sage text-dark fs-6 px-3 py-2 rounded-pill mb-3">
+                    <i class="fas fa-crown me-2"></i>New Achievement
+                </span>
+                <h2 class="fw-bold mb-4" style="font-size: 2.5rem; line-height: 1.3;">
+                    Dr. Dennis Henry Appointed as <span class="text-sage">Secretary Elect</span>
+                </h2>
+                <p class="text-muted mb-4" style="font-size: 1.1rem;">
+                    We are proud to announce that <strong>Dr. Dennis Henry</strong> has been appointed as the <strong>Secretary Elect of Bilaspur Society of Dermatology</strong>. This prestigious recognition reflects his dedication, expertise, and contributions to the field of dermatology.
+                </p>
+                <div class="d-flex align-items-center gap-2 p-3 rounded-3" style="background: rgba(175, 193, 171, 0.2); border: 1px solid var(--sage-300);">
+                    <i class="fas fa-award text-sage fs-4"></i>
+                    <span class="fw-semibold" style="font-size: 1.1rem;">Secretary Elect of <span class="text-sage">Bilaspur Society of Dermatology</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-5 bg-sage-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Our <span class="text-sage">Services</span></h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Comprehensive dermatology and cosmetology services under one roof.</p>
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Service 1 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-user-md fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Dermatology Consultation</h5>
+                    <p class="text-muted">Comprehensive skin evaluation and personalized treatment plans for all skin conditions.</p>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-microscope fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Dermoscopic Evaluation</h5>
+                    <p class="text-muted">Advanced skin analysis with personalized skin routine recommendations.</p>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-user-nurse fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Dermato-Surgery</h5>
+                    <p class="text-muted">Lipoma, Cyst, Nail, Skin Tag, Mole removal, Acne Scar treatment, Vitiligo surgeries.</p>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-crosshairs fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Laser Treatments</h5>
+                    <p class="text-muted">Melasma, Pimples, Pigmentation, Skin Rejuvenation, Tattoo Removal.</p>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-spa fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Aesthetics</h5>
+                    <p class="text-muted">Botox, Threads, Fillers, Non-surgical Skin Tightening, Body Reshaping.</p>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-pump-medical fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Medi-Spa</h5>
+                    <p class="text-muted">Chemical Peels, Skin Polish, Light Treatments, Vampire Facial, Gold Facial, Glutathione Therapy.</p>
+                </div>
+            </div>
+
+            <!-- Hair Treatment Service -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-cut fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Hair Treatment</h5>
+                    <p class="text-muted">Hair consultation for all types of hair loss, advanced hair analysis, Platelet rich plasma, exosomes, stemcells, hair rejuvenation, hair transplant.</p>
+                </div>
+            </div>
+
+            <!-- Laser Hair Reduction Service -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="450">
+                <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
+                    <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-magic fs-4 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold">Laser Hair Reduction</h5>
+                    <p class="text-muted">Advanced laser technology for permanent hair reduction. Safe, effective, and painless treatment for all skin types.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Our <span class="text-sage">Gallery & Achievements Section</span></h2>
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+        
+        <div class="row g-3">
+            
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="150">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/dr_sir_img1.jpg" alt="Gallery 2" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/img3.jpg" alt="Gallery 3" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="250">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/img4.jpg" alt="Gallery 4" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/img5.jpg" alt="Gallery 5" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="350">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/img_patient.jpeg" alt="Gallery 6" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/img1.jpg" alt="Gallery 7" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="450">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/img2.jpg" alt="Gallery 8" class="w-100 object-fit-cover">
+                </div>
+            </div>
+             <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="450">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/a1.jpeg" alt="Gallery 8" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="450">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/a2.jpeg" alt="Gallery 8" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="450">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/a3.jpeg" alt="Gallery 8" class="w-100 object-fit-cover">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="gallery-item rounded-3 overflow-hidden">
+                    <img src="/static/img/img1_dr.jpeg" alt="Gallery 1" class="w-100 object-fit-cover">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-sage-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Contact <span class="text-sage">Us</span></h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Get in touch with us for appointments and inquiries.</p>
+            <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="bg-white rounded-4 shadow-lg p-4 h-100">
+                    <h4 class="fw-bold mb-4">Clinic Information</h4>
+                    
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="bg-sage rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px;">
+                            <i class="fas fa-map-marker-alt text-dark"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold">Address</h6>
+                            <p class="text-muted mb-0">Usha Memorial Skin & Eye Hospital, Ware House Rd, near Sheafer School, Sindhi Colony, Bilaspur, Chhattisgarh 495001</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="bg-sage rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px;">
+                            <i class="fas fa-phone text-dark"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold">Phone</h6>
+                            <p class="text-muted mb-1">+91 97700 48965</p>
+                            <a href="tel:+919770048965" class="text-sage text-decoration-none">Call Now</a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="bg-sage rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px;">
+                            <i class="fas fa-envelope text-dark"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold">Email</h6>
+                            <p class="text-muted mb-0">drhenrysdermatology@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="bg-sage rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px;">
+                            <i class="fas fa-clock text-dark"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold">Clinic Timings</h6>
+                            <p class="text-muted mb-1">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="bg-sage rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px;">
+                            <i class="fab fa-instagram text-dark"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold">Instagram</h6>
+                            <p class="text-muted mb-0">@dr.henrys.dermatology</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="tel:+919770048965" class="btn btn-sage flex-fill">Call Now</a>
+                        <a href="https://wa.me/919770048965" target="_blank" class="btn btn-success flex-fill">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="bg-white rounded-4 shadow-lg p-4 h-100">
+                    <h4 class="fw-bold mb-4">Find Us On Map</h4>
+                    <iframe 
+                        src="https://www.google.com/maps?q=22.0881186,82.136652&hl=en&z=16&output=embed"
+                        width="100%" 
+                        height="350" 
+                        style="border:0; border-radius: 12px;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <img src="/static/img/logo.jpg" alt="Dr Henry's Skin Clinic" height="80" class="rounded-3 mb-3">
+                <p class="text-light opacity-75">Your trusted destination for advanced dermatology and skin care treatments in Bilaspur, Chhattisgarh.</p>
+            </div>
+            <div class="col-lg-4">
+                <h5 class="fw-bold mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#home" class="text-light text-decoration-none opacity-75 hover-text-sage">Home</a></li>
+                    <li><a href="#about" class="text-light text-decoration-none opacity-75 hover-text-sage">About</a></li>
+                    <li><a href="#doctors" class="text-light text-decoration-none opacity-75 hover-text-sage">Our Doctors</a></li>
+                    <li><a href="#recognition" class="text-light text-decoration-none opacity-75 hover-text-sage">Awards & Recognition</a></li>
+                    <li><a href="#services" class="text-light text-decoration-none opacity-75 hover-text-sage">Services</a></li>
+                    <li><a href="#contact" class="text-light text-decoration-none opacity-75 hover-text-sage">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <h5 class="fw-bold mb-3">Follow Us</h5>
+                <div class="d-flex gap-3">
+                    <a href="https://www.instagram.com/dr.henrys.dermatology?igsh=MWFidXpiYjQzYnIzcQ==" class="btn btn-sage rounded-circle"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919770048965" class="btn btn-success rounded-circle"><i class="fab fa-whatsapp"></i></a>
+                    <a href="tel:+919770048965" class="btn btn-sage rounded-circle"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="text-center">
+            <p class="mb-0 opacity-75">&copy; 2026 Dr Henry's Skin Clinic. All rights reserved. Design and created by <strong>snverse</strong></p>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating AI Button -->
+<a href="/chatbot" class="ai-floating-btn" title="Chat with AI">
+    <i class="fas fa-robot"></i>
+</a>
+
+<style>
+.btn-sage {
+    background-color: var(--sage-300) !important;
+    border-color: var(--sage-300) !important;
+    color: #000 !important;
+}
+.btn-sage:hover {
+    background-color: var(--sage-500) !important;
+    border-color: var(--sage-500) !important;
+}
+.btn-outline-sage {
+    border-color: var(--sage-300) !important;
+    color: var(--sage-400) !important;
+}
+.btn-outline-sage:hover {
+    background-color: var(--sage-300) !important;
+    color: #000 !important;
+}
+.nav-link-custom {
+    position: relative;
+    color: #333 !important;
+}
+.nav-link-custom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--sage-300);
+    transition: width 0.3s ease;
+}
+.nav-link-custom:hover::after {
+    width: 100%;
+}
+.hover-text-sage:hover {
+    color: var(--sage-300) !important;
+}
+.ai-floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--sage-300);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    font-size: 24px;
+    color: #000;
+}
+.ai-floating-btn:hover {
+    background: var(--sage-500);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+@media (max-width: 768px) {
+    .ai-floating-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+}
+</style>
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "@id": "https://ushamemorial.co.in/#dr-dennis-henry",
+  "name": "Dr. Dennis Henry",
+  "jobTitle": "Dermatologist and Dermato-surgeon",
+  "url": "https://ushamemorial.co.in/",
+  "worksFor": {"@type": "MedicalClinic", "name": "Dr Henry's Skin Clinic", "url": "https://ushamemorial.co.in/"},
+  "address": {"@type": "PostalAddress", "streetAddress": "1st Floor, Usha Memorial Skin & Eye Hospital, Ware House Road, near Sheafer School, Sindhi Colony", "addressLocality": "Bilaspur", "addressRegion": "Chhattisgarh", "postalCode": "495001", "addressCountry": "IN"},
+  "knowsAbout": ["Dermatology", "Dermato-surgery", "Aesthetic procedures", "Laser dermatology", "Skin care education", "Hyperpigmentation", "Hair disorders"],
+  "sameAs": ["https://www.instagram.com/dr.henrys.dermatology/"]
+}
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+</script>
+{% endblock %}

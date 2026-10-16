@@ -1,0 +1,260 @@
+/* Custom CSS for Dr Henry's Skin Clinic - Bootstrap Version */
+
+:root {
+    --sage-100: #E8EFE8;
+    --sage-200: #D4E8CD;
+    --sage-300: #AFC1AB;
+    --sage-400: #AEC0AA;
+    --sage-500: #8FA88C;
+    --clinic-sage: #AFC1AB;
+}
+
+* {
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth !important;
+}
+
+/* Navbar styles */
+#navbar {
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+#navbar.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll to top button */
+#scroll-top.show {
+    display: flex !important;
+}
+
+/* Gallery hover effect */
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.gallery-item:hover::before {
+    left: 100%;
+}
+
+.gallery-item img {
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Service cards */
+.service-card {
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Doctor cards */
+.doctor-card {
+    transition: all 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Hero section animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient background animation */
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sage-100);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--clinic-sage);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--sage-500);
+}
+
+/* Selection color */
+::selection {
+    background: var(--clinic-sage);
+    color: white;
+}
+
+/* Lightbox styles */
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+}
+
+/* Object fit cover helper */
+.object-fit-cover {
+    object-fit: cover;
+}
+
+/* Smooth transitions */
+.btn, .card, .nav-link {
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+}
+
+/* Hero section */
+.hero-section {
+    min-height: 100vh;
+}
+
+/* Form focus styles */
+.form-control:focus {
+    border-color: var(--clinic-sage);
+    box-shadow: 0 0 0 0.2rem rgba(175, 193, 171, 0.25);
+}
+
+/* Footer links */
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--sage-300) !important;
+}
+
+/* AOS overrides */
+[data-aos] {
+    pointer-events: none;
+}
+
+[data-aos].aos-animate {
+    pointer-events: auto;
+}
+/* =========================================
+   Awards & Achievements Section
+========================================= */
+
+#recognition {
+    scroll-margin-top: 90px;
+}
+
+#recognition .text-sage {
+    color: var(--sage-500) !important;
+}
+
+#recognition .badge {
+    white-space: normal;
+}
+
+.achievement-card {
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Achievement photos — 9:16 portrait ratio */
+.achievement-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.75rem;
+    margin-bottom: 1.1rem;
+    background: var(--sage-100);
+}
+
+.achievement-card {
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+}
+
+.achievement-card h3 {
+    line-height: 1.45;
+}
+
+.achievement-card p {
+    line-height: 1.75;
+}
+
+/* Mobile */
+@media (max-width: 575.98px) {
+    .achievement-photo {
+        aspect-ratio: 9 / 16;
+        height: auto;
+    }
+}
