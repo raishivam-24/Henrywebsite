@@ -220,17 +220,47 @@ footer a:hover {
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Achievement photos — 9:16 portrait ratio */
+/* Equal-size grid: every box has the same width and height */
+.recognition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 991.98px) {
+    .recognition-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575.98px) {
+    .recognition-grid { grid-template-columns: 1fr; }
+}
+
+/* Fixed-size photo frame; the photo keeps its own ratio (16:9, 9:16, 4:3 ...) inside it */
+.achievement-photo-frame {
+    height: 360px;
+    margin-bottom: 1.1rem;
+    border-radius: 0.75rem;
+    background: var(--sage-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
 .achievement-photo {
     display: block;
-    width: 100%;
-    aspect-ratio: 9 / 16;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 0.75rem;
-    margin-bottom: 1.1rem;
-    background: var(--sage-100);
+    object-fit: contain;
+}
+
+.achievement-info + .achievement-info {
+    margin-top: 1.1rem;
+    padding-top: 1.1rem;
+    border-top: 1px dashed var(--sage-300);
 }
 
 .achievement-card {
@@ -251,10 +281,12 @@ footer a:hover {
     line-height: 1.75;
 }
 
-/* Mobile */
-@media (max-width: 575.98px) {
-    .achievement-photo {
-        aspect-ratio: 9 / 16;
-        height: auto;
-    }
+/* Highlighted award cards */
+#recognition .achievement-card {
+    border: 2px solid var(--sage-300) !important;
+    background: linear-gradient(180deg, var(--sage-100) 0%, #fff 45%);
+}
+
+#recognition .achievement-card h3 {
+    color: #1f2a24;
 }
