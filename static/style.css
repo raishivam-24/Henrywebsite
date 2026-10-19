@@ -15,6 +15,14 @@
 
 html {
     scroll-behavior: smooth !important;
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* Navbar styles */
@@ -234,6 +242,39 @@ footer a:hover {
 
 @media (max-width: 575.98px) {
     .recognition-grid { grid-template-columns: 1fr; }
+
+    .hero-section {
+        min-height: 100vh !important;
+        min-height: 100svh !important;
+        padding-block: 6rem 5rem;
+    }
+
+    .hero-section .container {
+        padding-inline: 1.25rem;
+    }
+
+    .hero-section .display-2 {
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+        line-height: 1.1 !important;
+    }
+
+    .hero-section .lead {
+        font-size: 1rem !important;
+    }
+
+    .hero-section .d-flex.flex-wrap.gap-3 > .btn {
+        width: 100%;
+    }
+
+    .hero-section .d-flex.align-items-center.gap-4 {
+        flex-wrap: wrap;
+        gap: 1rem !important;
+    }
+
+    .hero-section .vr {
+        display: none;
+    }
+
 }
 
 /* Fixed-size photo frame; the photo keeps its own ratio (16:9, 9:16, 4:3 ...) inside it */
@@ -289,4 +330,10 @@ footer a:hover {
 
 #recognition .achievement-card h3 {
     color: #1f2a24;
+}
+
+@media (max-width: 575.98px) {
+    .achievement-photo-frame {
+        height: clamp(240px, 80vw, 320px);
+    }
 }
