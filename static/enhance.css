@@ -1,0 +1,147 @@
+/* =========================================================
+   Design & animation enhancements (additive – safe to remove)
+   ========================================================= */
+
+/* Scroll progress bar */
+#scroll-progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--sage-500), var(--sage-200), var(--sage-500));
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+    z-index: 2000;
+}
+@keyframes gradientSlide { to { background-position: -200% 0; } }
+
+/* Page load fade-in */
+body { animation: pageIn .7s ease both; }
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Navbar: animated underline on links */
+.nav-link-custom { position: relative; }
+.nav-link-custom::after {
+    content: ''; position: absolute; left: 50%; bottom: 2px; width: 0; height: 2px;
+    background: var(--sage-500); border-radius: 2px;
+    transition: width .3s ease, left .3s ease;
+}
+.nav-link-custom:hover::after { width: 70%; left: 15%; }
+
+/* Hero: shimmering title word + floating particles */
+.hero-section h1 .text-sage {
+    background: linear-gradient(90deg, #AFC1AB, #ffffff, #AFC1AB);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent !important;
+    animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { to { background-position: 200% center; } }
+
+.hero-particle {
+    position: absolute; bottom: -20px; border-radius: 50%;
+    background: rgba(175, 193, 171, .35);
+    pointer-events: none; z-index: 1;
+    animation: riseUp linear infinite;
+}
+@keyframes riseUp {
+    0%   { transform: translateY(0) scale(1); opacity: 0; }
+    15%  { opacity: .8; }
+    100% { transform: translateY(-105vh) scale(.6); opacity: 0; }
+}
+
+/* Buttons: lift + shine sweep */
+.btn { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.18); }
+.btn:active { transform: translateY(-1px); }
+.btn::before {
+    content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent);
+    transform: skewX(-20deg); transition: left .6s ease; pointer-events: none;
+}
+.btn:hover::before { left: 130%; }
+.btn .ripple {
+    position: absolute; border-radius: 50%; background: rgba(255,255,255,.5);
+    transform: scale(0); animation: ripple .6s ease-out; pointer-events: none;
+}
+@keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+/* Cards (except the awards cards, which have their own style) */
+.card:not(.achievement-card):not(.doctor-card) {
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:not(.achievement-card):not(.doctor-card):hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 36px rgba(95, 120, 92, .22) !important;
+}
+.doctor-card { transition: box-shadow .3s ease; transform-style: preserve-3d; will-change: transform; }
+.doctor-card:hover { box-shadow: 0 22px 44px rgba(95, 120, 92, .3) !important; }
+.doctor-card img, .card .object-fit-cover { transition: transform .6s ease; }
+.doctor-card:hover img { transform: scale(1.08); }
+
+/* Awards cards: shine sweep on hover (layout untouched) */
+#recognition .achievement-card { position: relative; }
+#recognition .achievement-card::after {
+    content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent);
+    transform: skewX(-20deg); transition: left .8s ease; pointer-events: none;
+}
+#recognition .achievement-card:hover::after { left: 140%; }
+#recognition .achievement-card i.fas { transition: transform .4s ease; }
+#recognition .achievement-card:hover i.fas { transform: scale(1.2) rotate(-8deg); }
+
+/* Section headings: underline bar grows in */
+.js-enhance .bg-sage.mx-auto[style*="height: 4px"] {
+    transform: scaleX(0); transition: transform .9s cubic-bezier(.2,.8,.2,1) .25s;
+}
+.js-enhance .bg-sage.mx-auto[style*="height: 4px"].in-view { transform: scaleX(1); }
+
+/* Badges gently pulse */
+.badge.bg-sage { animation: badgeGlow 3s ease-in-out infinite; }
+@keyframes badgeGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(143,168,140,.5); }
+    50%      { box-shadow: 0 0 0 8px rgba(143,168,140,0); }
+}
+
+/* Soft floating blobs behind light sections */
+section.bg-sage-light, section.bg-white { position: relative; }
+section.bg-sage-light::before, section.bg-sage-light::after {
+    content: ''; position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+    background: radial-gradient(circle, rgba(143,168,140,.18), transparent 70%);
+    animation: blobDrift 12s ease-in-out infinite;
+}
+section.bg-sage-light::before { width: 320px; height: 320px; top: -80px; left: -80px; }
+section.bg-sage-light::after  { width: 260px; height: 260px; bottom: -60px; right: -60px; animation-delay: -6s; }
+section.bg-sage-light > .container { position: relative; z-index: 1; }
+@keyframes blobDrift {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50%      { transform: translate(30px,-25px) scale(1.15); }
+}
+
+/* Round award badges on photos spin slowly */
+.position-absolute .fa-award.fs-3 { animation: tilt 3.5s ease-in-out infinite; }
+@keyframes tilt { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg) scale(1.1); } }
+
+/* Images in about/recent sections: gentle hover zoom */
+img.rounded-4.shadow-lg { transition: transform .5s ease, box-shadow .5s ease; }
+img.rounded-4.shadow-lg:hover { transform: scale(1.03); box-shadow: 0 24px 50px rgba(0,0,0,.28) !important; }
+
+/* Social / footer icons */
+footer a, .hero-section a.rounded-circle { transition: transform .3s ease, color .3s ease, background .3s ease; }
+.hero-section a.rounded-circle:hover { transform: translateY(-4px) scale(1.12); background: rgba(175,193,171,.6) !important; }
+footer a:hover { transform: translateX(4px); }
+
+/* Floating AI button: pulse ring */
+.ai-floating-btn { animation: aiPulse 2.4s ease-out infinite; }
+@keyframes aiPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(143,168,140,.6); }
+    70%  { box-shadow: 0 0 0 18px rgba(143,168,140,0); }
+    100% { box-shadow: 0 0 0 0 rgba(143,168,140,0); }
+}
+
+/* Form fields */
+.form-control, .form-select { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.form-control:focus, .form-select:focus { transform: translateY(-2px); }
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js-enhance .bg-sage.mx-auto[style*="height: 4px"] { transform: none; }
+}

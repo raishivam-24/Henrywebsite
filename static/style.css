@@ -9,9 +9,9 @@
     --clinic-sage: #AFC1AB;
 }
 
-* {
+/* * {
     overflow-x: hidden;
-}
+} */
 
 html {
     scroll-behavior: smooth !important;

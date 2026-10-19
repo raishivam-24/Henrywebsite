@@ -1,0 +1,144 @@
+/* =========================================================
+   Premium colour grading & design layer (additive)
+   Palette: deep forest + sage + warm champagne-gold + cream
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --forest-900: #0f2219;
+    --forest-800: #17332a;
+    --forest-700: #1f4435;
+    --sage-deep:  #5E7F5A;
+    --gold:       #C9A66B;
+    --gold-soft:  #E8D5A8;
+    --cream:      #FAF7F0;
+    --ink:        #1d2b24;
+    --mx: 50%; --my: 50%;
+}
+
+body { font-family: 'Poppins', system-ui, sans-serif; color: var(--ink); background: var(--cream) !important; }
+h1, h2, h3, .display-2, .display-4 { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -.01em; }
+h5, h6 { font-family: 'Poppins', sans-serif; }
+
+/* ---------- Colour grading: section backgrounds ---------- */
+section.bg-white { background: linear-gradient(180deg, #fff 0%, var(--cream) 100%) !important; }
+section.bg-sage-light { background: linear-gradient(135deg, #EEF3EA 0%, #E3ECE0 55%, #F3EFE4 100%) !important; }
+
+/* deep navy feature band -> rich forest with soft glow */
+section[style*="#1a1a2e"] {
+    background:
+        radial-gradient(900px 400px at 85% 10%, rgba(201,166,107,.16), transparent 60%),
+        radial-gradient(700px 400px at 5% 90%, rgba(143,168,140,.18), transparent 60%),
+        linear-gradient(135deg, var(--forest-900) 0%, var(--forest-700) 100%) !important;
+}
+
+/* hero overlay: cinematic green grade + vignette */
+.hero-section > div[style*="linear-gradient(135deg"] {
+    background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(201,166,107,.18), transparent 38%),
+        linear-gradient(135deg, rgba(10,24,17,.92) 0%, rgba(23,51,42,.84) 55%, rgba(12,30,22,.9) 100%) !important;
+}
+.hero-section::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    box-shadow: inset 0 0 180px rgba(0,0,0,.45);
+}
+
+/* footer */
+footer.bg-dark {
+    background: linear-gradient(180deg, var(--forest-800), var(--forest-900)) !important;
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--sage-500), var(--gold), var(--sage-500)) 1;
+}
+
+/* ---------- Text colour ---------- */
+section.bg-white .text-sage, section.bg-sage-light .text-sage {
+    background: linear-gradient(90deg, var(--sage-deep), #8C7A45);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent !important;
+}
+/* keep icon glyphs solid (gradient text would hide them) */
+section.bg-white i.text-sage, section.bg-sage-light i.text-sage,
+section.bg-white .text-sage i, section.bg-sage-light .text-sage i,
+#recognition i.text-sage { -webkit-text-fill-color: currentColor; background: none; color: var(--sage-deep) !important; }
+#recognition .text-sage { color: var(--sage-deep) !important; }
+#recognition h2 .text-sage { -webkit-text-fill-color: transparent; color: transparent !important; }
+.text-muted { color: #5b6b62 !important; }
+
+/* ---------- Navbar: frosted glass ---------- */
+#navbar {
+    background: rgba(250,247,240,.78) !important;
+    backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid rgba(143,168,140,.25);
+}
+.nav-link-custom { font-weight: 500; letter-spacing: .02em; }
+.nav-link-custom::after { background: linear-gradient(90deg, var(--sage-500), var(--gold)); }
+
+/* ---------- Buttons ---------- */
+body .btn.btn-sage {
+    background: linear-gradient(135deg, var(--sage-deep), var(--forest-700)) !important;
+    color: #fff !important; border: 0 !important; font-weight: 500; letter-spacing: .02em;
+    box-shadow: 0 8px 22px rgba(31,68,53,.35);
+}
+body .btn.btn-sage:hover { color: #fff !important; box-shadow: 0 14px 30px rgba(31,68,53,.45), 0 0 0 3px rgba(201,166,107,.45); }
+.btn-outline-light:hover { background: var(--gold) !important; border-color: var(--gold) !important; color: var(--forest-900) !important; }
+
+/* ---------- Cards & surfaces ---------- */
+.service-card, .doctor-card, #recognition .achievement-card {
+    border: 1px solid rgba(143,168,140,.28) !important;
+}
+.service-card { background: rgba(255,255,255,.85) !important; backdrop-filter: blur(6px); transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; position: relative; overflow: hidden; }
+.service-card::before {
+    content: ''; position: absolute; left: 0; top: 0; height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--sage-500), var(--gold)); transition: width .5s ease;
+}
+.service-card:hover::before { width: 100%; }
+.service-card:hover { transform: translateY(-8px); border-color: var(--gold) !important; box-shadow: 0 22px 40px rgba(31,68,53,.18) !important; }
+
+#recognition .achievement-card {
+    background: linear-gradient(180deg, #F3F7F0 0%, #fff 50%) !important;
+}
+#recognition .achievement-card:hover { border-color: var(--gold) !important; }
+#recognition .achievement-card h3 { font-family: 'Playfair Display', serif; }
+
+/* glass tiles on dark backgrounds */
+.backdrop-blur {
+    background: rgba(255,255,255,.08) !important;
+    border: 1px solid rgba(232,213,168,.28);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    transition: transform .3s ease, border-color .3s ease, background .3s ease;
+}
+.backdrop-blur:hover { transform: translateY(-4px); border-color: var(--gold); background: rgba(255,255,255,.13) !important; }
+
+/* spotlight that follows the cursor on dark bands */
+section[style*="#1a1a2e"] { position: relative; }
+section[style*="#1a1a2e"]::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx) var(--my), rgba(201,166,107,.14), transparent 60%);
+}
+section[style*="#1a1a2e"] > .container { position: relative; z-index: 1; }
+
+/* ---------- Headings: gold-sage divider ---------- */
+.bg-sage.mx-auto[style*="height: 4px"] {
+    background: linear-gradient(90deg, var(--sage-500), var(--gold), var(--sage-500)) !important;
+    border-radius: 4px; width: 90px !important;
+}
+.badge.bg-sage { background: linear-gradient(135deg, var(--sage-200), var(--gold-soft)) !important; color: var(--forest-900) !important; border: 1px solid rgba(201,166,107,.5); }
+
+/* ---------- Extra motion ---------- */
+.hero-section h1 .text-sage { background-image: linear-gradient(90deg, #AFC1AB, #E8D5A8, #ffffff, #E8D5A8, #AFC1AB); }
+.hero-particle { background: rgba(232,213,168,.35); }
+
+/* soft glow ring around round award badges */
+.position-absolute[style*="border-radius: 50%"][style*="80px"] { box-shadow: 0 0 0 6px rgba(201,166,107,.25), 0 10px 24px rgba(0,0,0,.25); background: linear-gradient(135deg, var(--sage-300), var(--gold-soft)) !important; }
+
+/* floating AI button */
+.ai-floating-btn { background: linear-gradient(135deg, var(--sage-deep), var(--forest-700)) !important; color: #fff !important; }
+
+/* selection + scrollbar */
+::selection { background: var(--gold-soft); color: var(--forest-900); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--sage-500), var(--forest-700)); border-radius: 8px; }
+
+/* scroll progress bar in gold-green */
+#scroll-progress { background: linear-gradient(90deg, var(--sage-500), var(--gold), var(--sage-500)); background-size: 200% 100%; }
