@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 from groq import Groq
 from dotenv import load_dotenv
 import os
-import smtplib
-from email.message import EmailMessage
+import resend
 from urllib.parse import quote
 
 load_dotenv()
@@ -12,10 +11,12 @@ app = Flask(__name__, static_url_path='/static')
 
 client = Groq(api_key=os.getenv('GROQ_API_KEY'))
 CLINIC_EMAIL = os.getenv('CLINIC_EMAIL', 'drhenrysdermatology@gmail.com')
-SMTP_HOST = os.getenv('SMTP_HOST', 'smtp.gmail.com')
-SMTP_PORT = int(os.getenv('SMTP_PORT', '587'))
-SMTP_USER = os.getenv('SMTP_USER', '')
-SMTP_PASS = os.getenv('SMTP_PASS', '')
+RESEND_API_KEY = os.getenv('RESEND_API_KEY', '')
+# Verified sender in Resend. Until your domain is verified, use: Dr Henry's Skin Clinic <onboarding@resend.dev>
+RESEND_FROM = os.getenv('RESEND_FROM', "Dr Henry's Skin Clinic <onboarding@resend.dev>")
+
+if RESEND_API_KEY:
+    resend.api_key = RESEND_API_KEY
 
 TREATMENTS = {
     'dermatology-consultation': {
@@ -146,7 +147,7 @@ def chatbot():
 
 @app.route('/api/appointment', methods=['POST'])
 def appointment():
-    """Receive booking details; email clinic when SMTP is configured."""
+    """Receive booking details and email the clinic via Resend."""
     data = request.get_json(silent=True) or {}
     name = (data.get('name') or '').strip()
     phone = (data.get('phone') or '').strip()
@@ -158,7 +159,7 @@ def appointment():
     if not name or not phone or not concern or not day:
         return jsonify({'ok': False, 'error': 'Missing required fields'}), 400
 
-    body = (
+    text_body = (
         f"New appointment request — Dr Henry's Skin Clinic\n\n"
         f"Name: {name}\n"
         f"Phone: {phone}\n"
@@ -167,26 +168,42 @@ def appointment():
         f"Preferred day: {day}\n"
         f"Message: {note or '—'}\n"
     )
+    html_body = f"""
+    <h2>New appointment request</h2>
+    <p><strong>Clinic:</strong> Dr Henry's Skin Clinic</p>
+    <ul>
+      <li><strong>Name:</strong> {name}</li>
+      <li><strong>Phone:</strong> {phone}</li>
+      <li><strong>Email:</strong> {email or '—'}</li>
+      <li><strong>Concern:</strong> {concern}</li>
+      <li><strong>Preferred day:</strong> {day}</li>
+      <li><strong>Message:</strong> {note or '—'}</li>
+    </ul>
+    """
 
-    emailed = False
-    if SMTP_USER and SMTP_PASS:
-        try:
-            msg = EmailMessage()
-            msg['Subject'] = f"Appointment request — {name}"
-            msg['From'] = SMTP_USER
-            msg['To'] = CLINIC_EMAIL
-            if email:
-                msg['Reply-To'] = email
-            msg.set_content(body)
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=20) as smtp:
-                smtp.starttls()
-                smtp.login(SMTP_USER, SMTP_PASS)
-                smtp.send_message(msg)
-            emailed = True
-        except Exception as exc:
-            return jsonify({'ok': True, 'emailed': False, 'error': str(exc)}), 200
+    if not RESEND_API_KEY:
+        return jsonify({
+            'ok': True,
+            'emailed': False,
+            'error': 'RESEND_API_KEY is not set in .env'
+        }), 200
 
-    return jsonify({'ok': True, 'emailed': emailed})
+    try:
+        payload = {
+            'from': RESEND_FROM,
+            'to': [CLINIC_EMAIL],
+            'subject': f"Appointment request — {name}",
+            'text': text_body,
+            'html': html_body,
+        }
+        if email:
+            payload['reply_to'] = email
+
+        result = resend.Emails.send(payload)
+        email_id = result.get('id') if isinstance(result, dict) else None
+        return jsonify({'ok': True, 'emailed': True, 'id': email_id})
+    except Exception as exc:
+        return jsonify({'ok': True, 'emailed': False, 'error': str(exc)}), 200
 
 
 @app.route('/chat', methods=['POST'])

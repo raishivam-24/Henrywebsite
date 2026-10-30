@@ -38,7 +38,9 @@
             'book.note': 'Message (optional)',
             'book.send': 'Send on WhatsApp & Email',
             'book.call': 'Call clinic',
-            'book.success': 'Opening WhatsApp and your email app with the appointment details…',
+            'book.success': 'Sending your request on WhatsApp and email…',
+            'book.email_ok': 'Email sent to the clinic. WhatsApp is opening…',
+            'book.email_fail': 'WhatsApp is opening. Email could not be sent automatically — use the email draft if it opens.',
             'faq.title': 'Frequently Asked Questions',
             'contact.title': 'Contact Us',
             'gallery.title': 'Clinic Gallery',
@@ -79,7 +81,9 @@
             'book.note': 'संदेश (वैकल्पिक)',
             'book.send': 'व्हाट्सएप और ईमेल भेजें',
             'book.call': 'क्लिनिक कॉल करें',
-            'book.success': 'व्हाट्सएप और ईमेल ऐप खुल रहा है…',
+            'book.success': 'व्हाट्सएप और ईमेल पर अनुरोध भेजा जा रहा है…',
+            'book.email_ok': 'क्लिनिक को ईमेल भेज दी गई। व्हाट्सएप खुल रहा है…',
+            'book.email_fail': 'व्हाट्सएप खुल रहा है। स्वचालित ईमेल नहीं भेजी जा सकी।',
             'faq.title': 'अक्सर पूछे जाने वाले प्रश्न',
             'contact.title': 'संपर्क करें',
             'gallery.title': 'क्लिनिक गैलरी',
@@ -132,27 +136,40 @@
         ].filter(Boolean).join('\n');
     }
 
-    function openWhatsAppAndEmail(data) {
+    function openWhatsAppAndEmail(data, statusEl) {
         var body = buildMessage(data);
         var wa = 'https://wa.me/' + CLINIC_PHONE + '?text=' + encodeURIComponent(body);
         var mail = 'mailto:' + CLINIC_EMAIL +
             '?subject=' + encodeURIComponent('Appointment request — ' + data.name) +
             '&body=' + encodeURIComponent(body);
+        var lang = localStorage.getItem('clinic-lang') || 'en';
+        var pack = dict[lang] || dict.en;
 
-        // WhatsApp first (primary for clinic), then email client
-        window.open(wa, '_blank', 'noopener');
-        setTimeout(function () {
-            window.location.href = mail;
-        }, 600);
-
-        // Also notify backend (optional email SMTP)
-        try {
-            fetch('/api/appointment', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).catch(function () {});
-        } catch (e) {}
+        fetch('/api/appointment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(function (r) { return r.json(); })
+            .then(function (res) {
+                if (statusEl) {
+                    statusEl.textContent = res.emailed ? pack['book.email_ok'] : pack['book.email_fail'];
+                    statusEl.classList.remove('d-none');
+                }
+                window.open(wa, '_blank', 'noopener');
+                // Fallback mailto only if Resend did not send
+                if (!res.emailed) {
+                    setTimeout(function () { window.location.href = mail; }, 500);
+                }
+            })
+            .catch(function () {
+                if (statusEl) {
+                    statusEl.textContent = pack['book.email_fail'];
+                    statusEl.classList.remove('d-none');
+                }
+                window.open(wa, '_blank', 'noopener');
+                setTimeout(function () { window.location.href = mail; }, 500);
+            });
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -197,7 +214,7 @@
                     status.textContent = (dict[lang] || dict.en)['book.success'];
                     status.classList.remove('d-none');
                 }
-                openWhatsAppAndEmail(data);
+                openWhatsAppAndEmail(data, status);
             });
         }
 

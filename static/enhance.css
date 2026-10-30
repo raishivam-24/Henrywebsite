@@ -72,8 +72,8 @@ body { opacity: 1; }
 }
 .doctor-card { transition: box-shadow .3s ease; transform-style: preserve-3d; will-change: transform; }
 .doctor-card:hover { box-shadow: 0 22px 44px rgba(95, 120, 92, .3) !important; }
-.doctor-card img, .card .object-fit-cover { transition: transform .6s ease; }
-.doctor-card:hover img { transform: scale(1.08); }
+.card .object-fit-cover { transition: transform .6s ease; }
+/* Do not zoom doctor photos — it crops faces */
 
 /* Awards cards: shine sweep on hover (layout untouched) */
 #recognition .achievement-card { position: relative; }

@@ -40,35 +40,29 @@ body {
     display: flex !important;
 }
 
-/* Gallery hover effect */
+/* Gallery: show full photo, original aspect ratio (no crop) */
 .gallery-item {
     position: relative;
     cursor: pointer;
     overflow: hidden;
-}
-
-.gallery-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
+    background: #eef2eb;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-    z-index: 1;
-}
-
-.gallery-item:hover::before {
-    left: 100%;
 }
 
 .gallery-item img {
-    transition: transform 0.5s ease;
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    display: block;
+    transition: opacity 0.25s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1);
+    transform: none;
+    opacity: 0.92;
 }
 
 /* Service cards */
