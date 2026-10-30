@@ -192,13 +192,16 @@ footer a:hover {
     color: var(--sage-300) !important;
 }
 
-/* AOS overrides */
+/* AOS: keep content interactive; never leave sections blank on phones */
 [data-aos] {
-    pointer-events: none;
-}
-
-[data-aos].aos-animate {
     pointer-events: auto;
+}
+@media (max-width: 767.98px) {
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 /* =========================================
    Awards & Achievements Section

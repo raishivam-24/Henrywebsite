@@ -30,20 +30,7 @@
 
         if (reduce) return;
 
-        /* Hero floating particles */
-        var hero = document.getElementById('home');
-        if (hero) {
-            for (var i = 0; i < 18; i++) {
-                var p = document.createElement('span');
-                var size = 4 + Math.random() * 10;
-                p.className = 'hero-particle';
-                p.style.width = p.style.height = size + 'px';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDuration = (8 + Math.random() * 10) + 's';
-                p.style.animationDelay = (-Math.random() * 15) + 's';
-                hero.appendChild(p);
-            }
-        }
+        /* Skip heavy floating particles — they hurt low-end phones */
 
         /* Button click ripple */
         document.querySelectorAll('.btn').forEach(function (btn) {

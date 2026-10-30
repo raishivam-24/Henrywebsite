@@ -12,9 +12,8 @@
 }
 @keyframes gradientSlide { to { background-position: -200% 0; } }
 
-/* Page load fade-in */
-body { animation: pageIn .7s ease both; }
-@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+/* Page load: keep content visible immediately (no long fade) */
+body { opacity: 1; }
 
 /* Navbar: animated underline on links */
 .nav-link-custom { position: relative; }
@@ -93,12 +92,8 @@ body { animation: pageIn .7s ease both; }
 }
 .js-enhance .bg-sage.mx-auto[style*="height: 4px"].in-view { transform: scaleX(1); }
 
-/* Badges gently pulse */
-.badge.bg-sage { animation: badgeGlow 3s ease-in-out infinite; }
-@keyframes badgeGlow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(143,168,140,.5); }
-    50%      { box-shadow: 0 0 0 8px rgba(143,168,140,0); }
-}
+/* Badges: no endless pulse (felt “AI-generated”) */
+.badge.bg-sage { box-shadow: none; }
 
 /* Soft floating blobs behind light sections */
 section.bg-sage-light, section.bg-white { position: relative; }
