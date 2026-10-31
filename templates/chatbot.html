@@ -297,7 +297,7 @@
                 });
                 const data = await response.json();
                 typingIndicator.style.display = 'none';
-                addMessage(data.response, false);
+                addMessage(data.response || 'Sorry, something went wrong. Please try again.', false);
             } catch (error) {
                 typingIndicator.style.display = 'none';
                 addMessage('Sorry, something went wrong. Please try again.', false);

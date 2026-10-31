@@ -208,12 +208,19 @@ def appointment():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    user_message = request.json.get('message', '')
+    data = request.get_json(silent=True) or {}
+    user_message = (data.get('message') or '').strip()
+    if not user_message:
+        return jsonify({'response': 'Please type your question.'}), 400
 
-    response = client.chat.completions.create(
-        model="openai/gpt-oss-120b",
-        messages=[
-            {"role": "system", "content": """You are a helpful assistant for Dr Henry's Skin Clinic in Bilaspur, Chhattisgarh.
+    fallback = ("Sorry, the assistant is not available right now. "
+                "Please call or WhatsApp the clinic on +91 97700 48965.")
+
+    try:
+        response = client.chat.completions.create(
+            model="openai/gpt-oss-120b",
+            messages=[
+                {"role": "system", "content": """You are a helpful assistant for Dr Henry's Skin Clinic in Bilaspur, Chhattisgarh.
 IMPORTANT DISCLAIMER — always remember and state when relevant:
 This chatbot does NOT give medical advice, diagnosis, or prescriptions. It cannot replace a doctor visit.
 
@@ -237,14 +244,28 @@ When responding:
 - Use simple plain text only
 - Use numbers followed by dots for lists (1. 2. 3.)
 - Do not use any markdown or special formatting"""},
-            {"role": "user", "content": user_message}
-        ],
-        temperature=0.7,
-        max_tokens=500
-    )
-
-    bot_response = response.choices[0].message.content
-    return jsonify({'response': bot_response})
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.7,
+            # gpt-oss is a reasoning model: leave room for thinking + the answer
+            max_tokens=1500,
+            extra_body={"reasoning_effort": "low"}
+        )
+        bot_response = (response.choices[0].message.content or '').strip()
+        if not bot_response:
+            raise ValueError('Model returned an empty reply')
+        return jsonify({'response': bot_response})
+    except Exception as exc:
+        status = getattr(exc, 'status_code', None)
+        hint = ''
+        if status == 401:
+            hint = ' -> GROQ_API_KEY is invalid/expired. Create a new key at console.groq.com/keys and update .env'
+        elif status == 429:
+            hint = ' -> Groq rate limit / quota reached. Wait a bit or check your Groq usage limits'
+        elif status in (400, 404):
+            hint = ' -> Request or model name rejected by Groq (check the model name)'
+        app.logger.error('Chatbot error [%s] %s: %s%s', status, type(exc).__name__, exc, hint)
+        return jsonify({'response': fallback}), 502
 
 
 if __name__ == '__main__':

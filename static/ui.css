@@ -278,3 +278,84 @@ html[data-theme="dark"] .gallery-caption {
     background: var(--bg-elevated);
     color: var(--text-soft);
 }
+
+/* =========================================================
+   Dark mode fixes: text that stayed dark / low contrast
+   ========================================================= */
+
+/* Header brand name (was hard black) */
+html[data-theme="dark"] #navbar .navbar-brand,
+html[data-theme="dark"] #navbar .navbar-brand span {
+    color: var(--text) !important;
+}
+
+/* Language chip: dark text on the light sage "active" pill */
+html[data-theme="dark"] .ui-chip[aria-pressed="true"] {
+    background: var(--accent);
+    color: #0f2219;
+    border-color: var(--accent);
+}
+
+/* Gradient headings (.text-sage): light sage -> gold instead of dark olive */
+html[data-theme="dark"] section:not(.hero-section) .text-sage:not(i):not(.btn):not(.badge) {
+    background: linear-gradient(90deg, #b5d3ae, #ecd9a4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent !important;
+}
+/* Icons using .text-sage stay solid and light */
+html[data-theme="dark"] section i.text-sage,
+html[data-theme="dark"] section .text-sage i,
+html[data-theme="dark"] #recognition i.text-sage {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: #b5d3ae !important;
+}
+
+/* Awards & Recognition cards: were white with pale text */
+html[data-theme="dark"] #recognition .achievement-card {
+    background: var(--bg-elevated) !important;
+    border-color: rgba(143, 176, 137, 0.35) !important;
+}
+html[data-theme="dark"] #recognition .achievement-card h3,
+html[data-theme="dark"] #recognition .achievement-card h4,
+html[data-theme="dark"] #recognition .achievement-card .fw-bold {
+    color: var(--text) !important;
+}
+html[data-theme="dark"] #recognition .achievement-card p,
+html[data-theme="dark"] #recognition .achievement-card .text-muted,
+html[data-theme="dark"] #recognition .achievement-card em {
+    color: var(--text-soft) !important;
+}
+html[data-theme="dark"] .achievement-info + .achievement-info {
+    border-top-color: var(--line);
+}
+
+/* Form placeholders (booking form etc.) were near-invisible */
+html[data-theme="dark"] .form-control::placeholder,
+html[data-theme="dark"] textarea::placeholder,
+html[data-theme="dark"] input::placeholder {
+    color: #9fb0a6 !important;
+    opacity: 1;
+}
+html[data-theme="dark"] .form-label,
+html[data-theme="dark"] .booking-card .form-label {
+    color: var(--text-soft);
+}
+html[data-theme="dark"] .form-control:focus,
+html[data-theme="dark"] .form-select:focus {
+    background: var(--bg-muted);
+    color: var(--text);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(143, 176, 137, 0.25);
+}
+html[data-theme="dark"] .form-select option { background: #1a2420; color: #e8efe9; }
+/* calendar icon in date input */
+html[data-theme="dark"] input[type="date"] { color-scheme: dark; }
+
+/* Plain text links inside cards / notes */
+html[data-theme="dark"] section a:not(.btn):not(.nav-link):not(.text-sage):not([class*="text-"]) {
+    color: #9cc5ff;
+}
+html[data-theme="dark"] .accordion-button::after { filter: invert(1); }
