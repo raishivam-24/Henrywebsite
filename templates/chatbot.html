@@ -206,11 +206,23 @@
                 padding: 12px 20px;
             }
         }
+
+        .lang-toggle { position: fixed; top: 20px; right: 150px; z-index: 1001; display: flex; gap: 6px; }
+        .lang-toggle button {
+            border: 1px solid rgba(0,0,0,.25); background: rgba(255,255,255,.75); color: #000;
+            padding: 9px 14px; border-radius: 20px; font-weight: 600; font-size: 14px; cursor: pointer;
+        }
+        .lang-toggle button[aria-pressed="true"] { background: var(--sage-500); color: #fff; border-color: var(--sage-500); }
+        @media (max-width: 600px) { .lang-toggle { top: 12px; right: 118px; } }
     </style>
 </head>
 <body>
+    <div class="lang-toggle">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="hi" aria-pressed="false">हिं</button>
+    </div>
     <a href="/" class="back-btn">
-        <i class="fas fa-arrow-left"></i> Back
+        <i class="fas fa-arrow-left"></i> <span id="tBack">Back</span>
     </a>
 
     <div class="chat-box">
@@ -219,19 +231,19 @@
                 <i class="fas fa-robot"></i>
             </div>
             <div class="chat-header-text">
-                <h4>Dr Henry's AI Assistant</h4>
-                <p>Clinic info only — not medical advice</p>
+                <h4 id="tTitle">Dr Henry's AI Assistant</h4>
+                <p id="tSub">Clinic info only — not medical advice</p>
             </div>
         </div>
         <div style="background:#fff3cd; border-bottom:1px solid #ffe69c; padding:10px 20px; font-size:13px; color:#664d03; flex-shrink:0;">
-            <strong>Disclaimer:</strong> This chatbot does <u>not</u> give medical advice, diagnose conditions, or prescribe medicines. For any skin concern, please visit the clinic or call +91 97700 48965.
+            <span id="tDisclaimer"><strong>Disclaimer:</strong> This chatbot does <u>not</u> give medical advice, diagnose conditions, or prescribe medicines. For any skin concern, please visit the clinic or call +91 97700 48965.</span>
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="msg-with-avatar">
                 <div class="bot-avatar">
                     <i class="fas fa-robot"></i>
                 </div>
-                <div class="bot-msg">
+                <div class="bot-msg" id="tWelcome">
                     Hello! I'm the clinic information assistant for Dr Henry's Skin Clinic. I can help with:
                     <br><br>
                     <strong>•</strong> Services we offer
@@ -259,6 +271,48 @@
         const userInput = document.getElementById('userInput');
         const sendBtn = document.getElementById('sendBtn');
         const typingIndicator = document.getElementById('typingIndicator');
+
+        // ---- English / Hindi ----
+        const L = {
+            en: {}, hi: {
+                tBack: 'वापस',
+                tTitle: 'डॉ हेनरी एआई सहायक',
+                tSub: 'केवल क्लिनिक की जानकारी — चिकित्सकीय सलाह नहीं',
+                tDisclaimer: '<strong>अस्वीकरण:</strong> यह चैटबॉट कोई चिकित्सकीय सलाह नहीं देता, रोग की पहचान <u>नहीं</u> करता और दवा नहीं लिखता। किसी भी त्वचा समस्या के लिए कृपया क्लिनिक आएँ या +91 97700 48965 पर कॉल करें।',
+                tWelcome: 'नमस्ते! मैं डॉ हेनरी स्किन क्लिनिक का सूचना सहायक हूँ। मैं इनमें मदद कर सकता हूँ:<br><br><strong>•</strong> हमारी सेवाएँ<br><strong>•</strong> समय और पता (वेयर हाउस रोड, सिंधी कॉलोनी, बिलासपुर)<br><strong>•</strong> अपॉइंटमेंट कैसे बुक करें (कॉल / व्हाट्सएप +91 97700 48965)<br><br><strong>मैं चिकित्सकीय सलाह, रोग की पहचान या दवा नहीं बताता।</strong> इलाज से जुड़े प्रश्नों के लिए कृपया क्लिनिक में डॉक्टर से मिलें।<br><br>मैं आज आपकी कैसे मदद कर सकता हूँ?'
+            }
+        };
+        const T = {
+            placeholder: { en: 'Type your question here...', hi: 'अपना प्रश्न यहाँ लिखें...' },
+            send: { en: 'Send', hi: 'भेजें' },
+            error: { en: 'Sorry, something went wrong. Please try again.', hi: 'क्षमा करें, कुछ गड़बड़ हो गई। कृपया दोबारा प्रयास करें।' },
+            title: { en: "AI Assistant - Dr Henry's Skin Clinic", hi: 'एआई सहायक - डॉ हेनरी स्किन क्लिनिक' }
+        };
+        const origHtml = {};
+        let currentLang = 'en';
+        function applyLang(lang) {
+            currentLang = lang === 'hi' ? 'hi' : 'en';
+            document.documentElement.lang = currentLang;
+            Object.keys(L.hi).forEach(function (id) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (!(id in origHtml)) origHtml[id] = el.innerHTML;
+                el.innerHTML = currentLang === 'hi' ? L.hi[id] : origHtml[id];
+            });
+            userInput.placeholder = T.placeholder[currentLang];
+            sendBtn.textContent = T.send[currentLang];
+            document.title = T.title[currentLang];
+            try { localStorage.setItem('clinic-lang', currentLang); } catch (e) {}
+            document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
+                b.setAttribute('aria-pressed', b.getAttribute('data-lang-btn') === currentLang ? 'true' : 'false');
+            });
+        }
+        document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
+            b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang-btn')); });
+        });
+        let savedLang = 'en';
+        try { savedLang = localStorage.getItem('clinic-lang') || 'en'; } catch (e) {}
+        applyLang(savedLang);
 
         function addMessage(message, isUser) {
             const msgDiv = document.createElement('div');
@@ -293,14 +347,14 @@
                 const response = await fetch('/chat', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({message})
+                    body: JSON.stringify({message, lang: currentLang})
                 });
                 const data = await response.json();
                 typingIndicator.style.display = 'none';
-                addMessage(data.response || 'Sorry, something went wrong. Please try again.', false);
+                addMessage(data.response || T.error[currentLang], false);
             } catch (error) {
                 typingIndicator.style.display = 'none';
-                addMessage('Sorry, something went wrong. Please try again.', false);
+                addMessage(T.error[currentLang], false);
             }
             
             sendBtn.disabled = false;

@@ -95,6 +95,20 @@
     // Hindi translations for every other text block on the page, matched by exact English text.
     // (Review quotes, doctor names and degrees are intentionally left as written.)
     var hiPhrases = {
+        "All services": "सभी सेवाएँ",
+        "What it involves": "इसमें क्या होता है",
+        "Sessions": "सत्र",
+        "Downtime": "डाउनटाइम (ठीक होने का समय)",
+        "Rough cost": "अनुमानित खर्च",
+        "Cost": "खर्च",
+        "Patient Results": "मरीज़ों के नतीजे",
+        "Shared with each patient's written consent. Results vary from person to person.": "हर मरीज़ की लिखित सहमति से साझा किया गया। नतीजे हर व्यक्ति में अलग-अलग होते हैं।",
+        "Before": "पहले",
+        "After": "बाद में",
+        "Who typically sees you": "आपको कौन देखेगा",
+        "Ask on WhatsApp": "व्हाट्सएप पर पूछें",
+        "Exact plan, number of sessions and fee are confirmed after an in-person consultation. This page is general information only — not medical advice.": "सटीक योजना, सत्रों की संख्या और शुल्क आमने-सामने परामर्श के बाद तय होते हैं। यह पेज केवल सामान्य जानकारी है — चिकित्सकीय सलाह नहीं।",
+        "© 2026 Dr Henry's Skin Clinic · Ware House Rd, Sindhi Colony, Bilaspur": "© 2026 डॉ हेनरी स्किन क्लिनिक · वेयर हाउस रोड, सिंधी कॉलोनी, बिलासपुर",
         "Dr Henry's Skin Clinic": "डॉ हेनरी स्किन क्लिनिक",
         "Dr Henry's": "डॉ हेनरी का",
         "Skin Clinic": "स्किन क्लिनिक",
@@ -275,17 +289,23 @@
 
     var i18nNodes = null;   // [{node, orig, lead, trail, hi}]
     var i18nAttrs = null;   // [{el, orig, hi}]
+    var i18nHiEls = null;   // [{el, orig, hi}]  elements carrying their own Hindi in data-hi
 
     function collapse(t) { return t.replace(/\s+/g, ' ').trim(); }
 
     function collectI18n() {
         i18nNodes = [];
         i18nAttrs = [];
+        i18nHiEls = [];
+        document.querySelectorAll('[data-hi]').forEach(function (el) {
+            var hi = el.getAttribute('data-hi');
+            if (hi) i18nHiEls.push({ el: el, orig: el.textContent, hi: hi });
+        });
         var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
             acceptNode: function (n) {
                 var p = n.parentElement;
                 if (!p || /^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p.tagName)) return NodeFilter.FILTER_REJECT;
-                if (p.closest('[data-i18n],[translate="no"]')) return NodeFilter.FILTER_REJECT;
+                if (p.closest('[data-i18n],[data-hi],[translate="no"]')) return NodeFilter.FILTER_REJECT;
                 return NodeFilter.FILTER_ACCEPT;
             }
         });
@@ -332,6 +352,13 @@
         i18nAttrs.forEach(function (it) {
             it.el.setAttribute('placeholder', lang === 'hi' ? it.hi : it.orig);
         });
+        i18nHiEls.forEach(function (it) {
+            it.el.textContent = lang === 'hi' ? it.hi : it.orig;
+        });
+        // Browser tab title
+        var de = document.documentElement;
+        var tEn = de.getAttribute('data-title-en'), tHi = de.getAttribute('data-title-hi');
+        if (lang === 'hi' && tHi) document.title = tHi; else if (tEn) document.title = tEn;
 
         localStorage.setItem('clinic-lang', lang);
         document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
@@ -456,7 +483,7 @@
                         io.unobserve(en.target);
                     }
                 });
-            }, { threshold: 0.12 });
+            }, { threshold: 0.01, rootMargin: '0px 0px 80px 0px' });
             document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
         } else {
             document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });

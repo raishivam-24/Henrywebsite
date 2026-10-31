@@ -2,58 +2,63 @@
 
 {% block title %}{{ treatment.title }} | Dr Henry's Skin Clinic, Bilaspur{% endblock %}
 {% block meta_description %}{{ treatment.summary }} Book at Dr Henry's Skin Clinic, Bilaspur. Call +91 97700 48965.{% endblock %}
-{% block canonical %}https://ushamemorial.co.in/treatments/{{ treatment.slug }}{% endblock %}
+{% block title_hi %}{{ hi.title or treatment.title }} | डॉ हेनरी स्किन क्लिनिक, बिलासपुर{% endblock %}
+{% block canonical %}{{ site_url }}/treatments/{{ treatment.slug }}{% endblock %}
 {% block og_title %}{{ treatment.title }} | Dr Henry's Skin Clinic{% endblock %}
 {% block og_description %}{{ treatment.summary }}{% endblock %}
-{% block og_url %}https://ushamemorial.co.in/treatments/{{ treatment.slug }}{% endblock %}
+{% block og_url %}{{ site_url }}/treatments/{{ treatment.slug }}{% endblock %}
 
 {% block content %}
 <nav class="navbar navbar-expand-lg fixed-top" id="navbar" style="padding: 8px 0;">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="/static/img/logo.webp" alt="Dr Henry's Skin Clinic" width="45" height="45" class="rounded-3 shadow" style="width:45px;height:45px;object-fit:cover;">
-            <span class="ms-2 fw-semibold d-none d-sm-inline" style="font-size:0.95rem;">Dr Henry's Skin Clinic</span>
+            <span class="ms-2 fw-semibold brand-name" style="font-size:0.95rem;">Dr Henry's Skin Clinic</span>
         </a>
-        <a href="/#services" class="btn btn-sm btn-sage rounded-pill">All services</a>
+        <div class="d-flex align-items-center gap-2">
+            <button type="button" class="ui-chip" data-lang-btn="en" aria-pressed="true">EN</button>
+            <button type="button" class="ui-chip" data-lang-btn="hi" aria-pressed="false">हिं</button>
+            <a href="/#services" class="btn btn-sm btn-sage rounded-pill">All services</a>
+        </div>
     </div>
 </nav>
 
 <section class="py-5 bg-sage-light" style="padding-top: 7rem !important;">
     <div class="container" style="max-width: 820px;">
-        <p class="text-muted small mb-2"><a href="/" class="text-decoration-none text-muted">Home</a> / <a href="/#services" class="text-decoration-none text-muted">Services</a> / {{ treatment.title }}</p>
-        <h1 class="fw-bold mb-3">{{ treatment.title }}</h1>
-        <p class="lead text-muted">{{ treatment.summary }}</p>
+        <p class="text-muted small mb-2"><a href="/" class="text-decoration-none text-muted">Home</a> / <a href="/#services" class="text-decoration-none text-muted">Services</a> / <span data-hi="{{ hi.title }}">{{ treatment.title }}</span></p>
+        <h1 class="fw-bold mb-3" data-hi="{{ hi.title }}">{{ treatment.title }}</h1>
+        <p class="lead text-muted" data-hi="{{ hi.summary }}">{{ treatment.summary }}</p>
         <div class="bg-sage mb-4" style="width: 60px; height: 4px;"></div>
 
         <div class="bg-white rounded-4 shadow-sm p-4 mb-4">
             <h2 class="h5 fw-bold">What it involves</h2>
-            <p class="text-muted mb-0">{{ treatment.what }}</p>
+            <p class="text-muted mb-0" data-hi="{{ hi.what }}">{{ treatment.what }}</p>
         </div>
 
         <div class="row g-3 mb-4">
             <div class="col-md-4">
                 <div class="bg-white rounded-4 shadow-sm p-3 h-100">
                     <p class="small text-muted mb-1">Sessions</p>
-                    <p class="fw-semibold mb-0">{{ treatment.sessions }}</p>
+                    <p class="fw-semibold mb-0" data-hi="{{ hi.sessions }}">{{ treatment.sessions }}</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="bg-white rounded-4 shadow-sm p-3 h-100">
                     <p class="small text-muted mb-1">Downtime</p>
-                    <p class="fw-semibold mb-0">{{ treatment.downtime }}</p>
+                    <p class="fw-semibold mb-0" data-hi="{{ hi.downtime }}">{{ treatment.downtime }}</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="bg-white rounded-4 shadow-sm p-3 h-100">
-                    <p class="small text-muted mb-1">Rough cost</p>
-                    <p class="fw-semibold mb-0">{{ treatment.cost }}</p>
+                    <p class="small text-muted mb-1">{% if has_price %}Rough cost{% else %}Cost{% endif %}</p>
+                    <p class="fw-semibold mb-0" data-hi="{{ hi.cost }}">{{ treatment.cost }}</p>
                 </div>
             </div>
         </div>
 
         <div class="bg-white rounded-4 shadow-sm p-4 mb-4">
             <h2 class="h5 fw-bold">Who typically sees you</h2>
-            <p class="text-muted mb-0">{{ treatment.doctor }}</p>
+            <p class="text-muted mb-0" data-hi="{{ hi.doctor }}">{{ treatment.doctor }}</p>
         </div>
 
         <p class="small text-muted mb-4">Exact plan, number of sessions and fee are confirmed after an in-person consultation. This page is general information only — not medical advice.</p>
