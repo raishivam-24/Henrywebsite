@@ -359,3 +359,44 @@ html[data-theme="dark"] section a:not(.btn):not(.nav-link):not(.text-sage):not([
     color: #9cc5ff;
 }
 html[data-theme="dark"] .accordion-button::after { filter: invert(1); }
+
+/* =========================================================
+   Mobile menu (hamburger panel)
+   ========================================================= */
+@media (max-width: 991.98px) {
+    #navbar .navbar-collapse {
+        max-height: calc(100vh - 90px);
+        max-height: calc(100dvh - 90px);
+        overflow-y: auto;
+        overscroll-behavior: contain;      /* scrolling the menu doesn't scroll the page */
+    }
+    /* Dark mode: the panel was hard-coded white, so the light link text vanished */
+    html[data-theme="dark"] #navbar .navbar-collapse {
+        background-color: var(--bg-elevated) !important;
+        border: 1px solid var(--line);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+    html[data-theme="dark"] #navbar .nav-link-custom { color: var(--text) !important; }
+    html[data-theme="dark"] #navbar .nav-link-custom:hover,
+    html[data-theme="dark"] #navbar .nav-link-custom.is-active {
+        background: rgba(143, 176, 137, 0.2);
+        color: #fff !important;
+    }
+}
+
+/* Clinic name stays visible in the header on phones */
+#navbar .navbar-brand { min-width: 0; }
+#navbar .brand-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    line-height: 1.15;
+}
+@media (max-width: 575.98px) {
+    #navbar .navbar-brand { gap: 0.5rem; margin-right: 0.5rem; flex: 1 1 auto; }
+    #navbar .brand-name { font-size: 0.95rem !important; }
+}
+@media (max-width: 359.98px) {
+    #navbar .brand-name { font-size: 0.8rem !important; }
+}

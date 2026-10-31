@@ -479,3 +479,37 @@
         window.CLINIC_MAPS_URL = MAPS_URL;
     });
 })();
+
+/* Mobile menu: close the hamburger panel on scroll, outside tap or Escape */
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        var menu = document.getElementById('navbarNav');
+        var toggler = document.querySelector('.navbar-toggler');
+        if (!menu || !toggler || !window.bootstrap) return;
+
+        var openedAt = 0;
+        function isOpen() { return menu.classList.contains('show'); }
+        function closeMenu() {
+            if (isOpen()) window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
+        }
+
+        menu.addEventListener('shown.bs.collapse', function () { openedAt = window.scrollY; });
+
+        // Page scrolled while the menu is open -> close it (small threshold ignores jitter)
+        window.addEventListener('scroll', function () {
+            if (isOpen() && Math.abs(window.scrollY - openedAt) > 24) closeMenu();
+        }, { passive: true });
+
+        // Tap/click anywhere outside the navbar closes it
+        document.addEventListener('click', function (e) {
+            if (isOpen() && !e.target.closest('#navbar')) closeMenu();
+        });
+        document.addEventListener('touchstart', function (e) {
+            if (isOpen() && !e.target.closest('#navbar')) closeMenu();
+        }, { passive: true });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeMenu();
+        });
+    });
+})();
