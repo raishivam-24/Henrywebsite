@@ -1,7 +1,7 @@
 (function () {
     var CLINIC_PHONE = '919770048965';
     var CLINIC_EMAIL = 'drhenrysdermatology@gmail.com';
-    var MAPS_URL = 'https://maps.app.goo.gl/sek2LjWRsRHCm6aL8';
+    var MAPS_URL = 'https://maps.app.goo.gl/onRbua4W5WJ2AZ5cA';
 
     var dict = {
         en: {
@@ -26,7 +26,7 @@
             'doctors.sub': 'A family team of dermatologists with local and international training.',
             'reviews.title': 'What patients say on Google',
             'reviews.sub': 'Real reviews from Google Maps for Dr Henry\'s Skin Clinic.',
-            'reviews.based': 'Based on 232 Google reviews',
+            'reviews.based': 'Based on 454 Google reviews',
             'reviews.open': 'Read all reviews on Google',
             'book.title': 'Book an Appointment',
             'book.sub': 'Send your request on WhatsApp and email in one step. We will confirm your slot.',
@@ -69,7 +69,7 @@
             'doctors.sub': 'स्थानीय और अंतरराष्ट्रीय प्रशिक्षण वाले त्वचा विशेषज्ञों की टीम।',
             'reviews.title': 'मरीज़ गूगल पर क्या कहते हैं',
             'reviews.sub': 'डॉ हेनरी स्किन क्लिनिक की गूगल मैप्स से वास्तविक समीक्षाएँ।',
-            'reviews.based': '२३२ गूगल समीक्षाओं पर आधारित',
+            'reviews.based': '४५४ गूगल समीक्षाओं पर आधारित',
             'reviews.open': 'गूगल पर सभी समीक्षाएँ पढ़ें',
             'book.title': 'अपॉइंटमेंट बुक करें',
             'book.sub': 'एक कदम में व्हाट्सएप और ईमेल पर अनुरोध भेजें। हम स्लॉट की पुष्टि करेंगे।',
@@ -228,7 +228,11 @@
         "Google Maps · 7 reviews": "गूगल मैप्स · 7 समीक्षाएँ",
         "Local Guide · 163 reviews": "लोकल गाइड · 163 समीक्षाएँ",
         "Google Maps · 1 review": "गूगल मैप्स · 1 समीक्षा",
-        "Reviews shown from": "समीक्षाएँ यहाँ से ली गई हैं:",
+        "A selection of reviews from": "चुनिंदा समीक्षाएँ यहाँ से:",
+        "Google Maps · 4 reviews": "गूगल मैप्स · 4 समीक्षाएँ",
+        "Local Guide · 48 reviews": "लोकल गाइड · 48 समीक्षाएँ",
+        "Local Guide · 93 reviews": "लोकल गाइड · 93 समीक्षाएँ",
+        "Google Maps · 3 reviews": "गूगल मैप्स · 3 समीक्षाएँ",
         "Google Maps": "गूगल मैप्स",
         ". Rating and count match the clinic’s Google Business listing.": "। रेटिंग और संख्या क्लिनिक की गूगल बिज़नेस लिस्टिंग से मेल खाती है।",
         "Frequently Asked": "अक्सर पूछे जाने वाले",
