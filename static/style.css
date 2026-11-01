@@ -252,18 +252,24 @@ footer a:hover {
 
 /* Equal-size grid: every box has the same width and height */
 .recognition-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
-    gap: 1.5rem;
+    column-count: 3;
+    column-gap: 1.5rem;
 }
+.recognition-grid > div {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    width: 100%;
+}
+#recognition .achievement-card { height: auto !important; }
 
 @media (max-width: 991.98px) {
-    .recognition-grid { grid-template-columns: repeat(2, 1fr); }
+    .recognition-grid { column-count: 2; }
 }
 
 @media (max-width: 575.98px) {
-    .recognition-grid { grid-template-columns: 1fr; }
+    .recognition-grid { column-count: 1; }
 
     .hero-section {
         min-height: 100vh !important;
@@ -301,23 +307,17 @@ footer a:hover {
 
 /* Fixed-size photo frame; the photo keeps its own ratio (16:9, 9:16, 4:3 ...) inside it */
 .achievement-photo-frame {
-    height: 360px;
     margin-bottom: 1.1rem;
     border-radius: 0.75rem;
-    background: var(--sage-100);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
+    line-height: 0;
 }
 
+/* The box takes the photo's own shape: full card width, natural height, no empty bands */
 .achievement-photo {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
+    width: 100%;
     height: auto;
-    object-fit: contain;
 }
 
 .achievement-info + .achievement-info {
@@ -352,10 +352,4 @@ footer a:hover {
 
 #recognition .achievement-card h3 {
     color: #1f2a24;
-}
-
-@media (max-width: 575.98px) {
-    .achievement-photo-frame {
-        height: clamp(240px, 80vw, 320px);
-    }
 }

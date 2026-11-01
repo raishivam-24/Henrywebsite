@@ -95,6 +95,11 @@
     // Hindi translations for every other text block on the page, matched by exact English text.
     // (Review quotes, doctor names and degrees are intentionally left as written.)
     var hiPhrases = {
+        "Trusted dermatology care in Bilaspur": "बिलासपुर में भरोसेमंद त्वचा चिकित्सा",
+        "Dr Henry's Skin Clinic — call or WhatsApp for appointments: +91 97700 48965": "डॉ हेनरी स्किन क्लिनिक — अपॉइंटमेंट के लिए कॉल या व्हाट्सएप करें: +91 97700 48965",
+        "Message on WhatsApp": "व्हाट्सएप पर लिखें",
+        "Can I talk to the doctor in Hindi?": "क्या हिंदी में बात हो सकती है?",
+        "Yes. Consultation is available in Hindi at the clinic. You can also write to us in Hindi on WhatsApp.": "हाँ। क्लिनिक में हिंदी में परामर्श उपलब्ध है। व्हाट्सएप पर भी हिंदी में लिख सकते हैं।",
         "All services": "सभी सेवाएँ",
         "What it involves": "इसमें क्या होता है",
         "Sessions": "सत्र",
@@ -289,6 +294,7 @@
 
     var i18nNodes = null;   // [{node, orig, lead, trail, hi}]
     var i18nAttrs = null;   // [{el, orig, hi}]
+    var i18nHrefs = null;   // [{el, orig, hi}] links that need a Hindi pre-filled message
     var i18nHiEls = null;   // [{el, orig, hi}]  elements carrying their own Hindi in data-hi
 
     function collapse(t) { return t.replace(/\s+/g, ' ').trim(); }
@@ -297,6 +303,10 @@
         i18nNodes = [];
         i18nAttrs = [];
         i18nHiEls = [];
+        i18nHrefs = [];
+        document.querySelectorAll('[data-hi-href]').forEach(function (el) {
+            i18nHrefs.push({ el: el, orig: el.getAttribute('href'), hi: el.getAttribute('data-hi-href') });
+        });
         document.querySelectorAll('[data-hi]').forEach(function (el) {
             var hi = el.getAttribute('data-hi');
             if (hi) i18nHiEls.push({ el: el, orig: el.textContent, hi: hi });
@@ -351,6 +361,9 @@
         });
         i18nAttrs.forEach(function (it) {
             it.el.setAttribute('placeholder', lang === 'hi' ? it.hi : it.orig);
+        });
+        i18nHrefs.forEach(function (it) {
+            it.el.setAttribute('href', lang === 'hi' ? it.hi : it.orig);
         });
         i18nHiEls.forEach(function (it) {
             it.el.textContent = lang === 'hi' ? it.hi : it.orig;
