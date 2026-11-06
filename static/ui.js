@@ -9,7 +9,7 @@
             'nav.about': 'About',
             'nav.doctors': 'Our Doctors',
             'nav.awards': 'Awards',
-            'nav.services': 'Services',
+            'nav.services': 'Treatments',
             'nav.gallery': 'Gallery',
             'nav.reviews': 'Reviews',
             'nav.faq': 'FAQ',
@@ -52,7 +52,7 @@
             'nav.about': 'हमारे बारे में',
             'nav.doctors': 'डॉक्टर',
             'nav.awards': 'पुरस्कार',
-            'nav.services': 'सेवाएँ',
+            'nav.services': 'उपचार',
             'nav.gallery': 'गैलरी',
             'nav.reviews': 'समीक्षाएँ',
             'nav.faq': 'प्रश्न',
@@ -208,6 +208,11 @@
         ".": " नियुक्त किया गया है।",
         "Our": "हमारी",
         "Services": "सेवाएँ",
+        "Treatments": "उपचार",
+        "Every treatment we offer, with typical sessions. Results vary; your plan is confirmed after consultation.": "क्लिनिक की पूरी उपचार सूची, सत्रों की संख्या के साथ। नतीजे अलग-अलग होते हैं; योजना परामर्श के बाद तय होती है।",
+        "View details": "विवरण देखें",
+        "Patient Results": "मरीज़ों के नतीजे",
+        "Before-and-after photographs from the clinic. Results vary from person to person.": "क्लिनिक की पहले-और-बाद की तस्वीरें। नतीजे हर व्यक्ति में अलग होते हैं।",
         "Dermatology and cosmetology under one roof. Tap a service for more detail.": "त्वचा रोग और कॉस्मेटोलॉजी एक ही छत के नीचे। अधिक जानकारी के लिए किसी सेवा पर टैप करें।",
         "Dermatology Consultation": "त्वचा रोग परामर्श",
         "Skin evaluation and personalised treatment plans.": "त्वचा की जाँच और व्यक्तिगत उपचार योजनाएँ।",
@@ -529,6 +534,18 @@
         }, { passive: true });
 
         window.CLINIC_MAPS_URL = MAPS_URL;
+
+        var filters = document.querySelectorAll('[data-tx-filter]');
+        var items = document.querySelectorAll('.tx-item');
+        filters.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = btn.getAttribute('data-tx-filter');
+                filters.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+                items.forEach(function (el) {
+                    el.hidden = id !== 'all' && el.getAttribute('data-tx-cat') !== id;
+                });
+            });
+        });
     });
 })();
 

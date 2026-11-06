@@ -19,7 +19,7 @@
                 <li class="nav-item"><a class="nav-link nav-link-custom" href="#about" data-i18n="nav.about">About</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-custom" href="#doctors" data-i18n="nav.doctors">Our Doctors</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-custom" href="#recognition" data-i18n="nav.awards">Awards</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-custom" href="#services" data-i18n="nav.services">Services</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#services" data-i18n="nav.services">Treatments</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-custom" href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-custom" href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-custom" href="#faq" data-i18n="nav.faq">FAQ</a></li>
@@ -451,115 +451,37 @@
     </div>
 </section>
 
-<!-- Services -->
+<!-- Treatments -->
 <section id="services" class="py-5 bg-sage-light">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="200">
-            <h2 class="fw-bold">Our <span class="text-sage">Services</span></h2>
-            <p class="text-muted mx-auto" style="max-width: 600px;">Dermatology and cosmetology under one roof. Tap a service for more detail.</p>
+        <div class="text-center mb-4" data-aos="fade-up" data-aos-duration="200">
+            <h2 class="fw-bold">Our <span class="text-sage">Treatments</span></h2>
+            <p class="text-muted mx-auto" style="max-width: 680px;" data-hi="क्लिनिक की पूरी उपचार सूची, सत्रों की संख्या के साथ। किसी भी कार्ड पर टैप करें।">Every treatment we offer, with typical sessions. Results vary; your plan is confirmed after consultation.</p>
             <div class="bg-sage mx-auto" style="width: 60px; height: 4px;"></div>
         </div>
 
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/dermatology-consultation" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-user-md fs-4 text-dark"></i>
+        <div class="tx-filters" role="tablist" aria-label="Filter treatments">
+            {% for cat in categories %}
+            <button type="button" class="tx-filter{% if cat.id == 'all' %} is-active{% endif %}" data-tx-filter="{{ cat.id }}" data-hi="{{ cat.label_hi }}">{{ cat.label }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="row g-4" id="txGrid">
+            {% for t in treatments %}
+            <div class="col-md-6 col-lg-4 tx-item" data-tx-cat="{{ t.category }}">
+                <a href="/treatments/{{ t.slug }}" class="text-decoration-none text-dark">
+                    <article class="tx-card h-100">
+                        <div class="tx-card-top">
+                            <span class="tx-icon" aria-hidden="true"><i class="fas {{ t.icon }}"></i></span>
+                            <span class="tx-sessions" data-hi="{{ t.hi_sessions }}">{{ t.sessions }}</span>
                         </div>
-                        <h5 class="fw-bold">Dermatology Consultation</h5>
-                        <p class="text-muted mb-0">Skin evaluation and personalised treatment plans.</p>
-                    </div>
+                        <h3 class="h5 fw-bold mb-2" data-hi="{{ t.hi_title }}">{{ t.title }}</h3>
+                        <p class="text-muted small mb-3" data-hi="{{ t.hi_summary }}">{{ t.summary }}</p>
+                        <span class="tx-link">View details <i class="fas fa-arrow-right ms-1"></i></span>
+                    </article>
                 </a>
             </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/dermoscopic-evaluation" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-microscope fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Dermoscopic Evaluation</h5>
-                        <p class="text-muted mb-0">Advanced skin analysis with routine guidance.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/dermato-surgery" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-user-nurse fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Dermato-Surgery</h5>
-                        <p class="text-muted mb-0">Lipoma, cyst, nail, mole, acne scar and vitiligo surgery.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/laser-treatments" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-crosshairs fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Laser Treatments</h5>
-                        <p class="text-muted mb-0">Melasma, pigmentation, rejuvenation, tattoo removal.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/aesthetics" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-spa fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Aesthetics</h5>
-                        <p class="text-muted mb-0">Botox, threads, fillers, non-surgical tightening.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/medi-spa" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-pump-medical fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Medi-Spa</h5>
-                        <p class="text-muted mb-0">Peels, polish, light treatments, glutathione therapy.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/hair-treatment" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-cut fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Hair Treatment</h5>
-                        <p class="text-muted mb-0">PRP, exosomes, stem cells, rejuvenation, transplant.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/laser-hair-reduction" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-magic fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Laser Hair Reduction</h5>
-                        <p class="text-muted mb-0">Safe laser hair reduction for all skin types.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                <a href="/treatments/infection-std-care" class="text-decoration-none text-dark">
-                    <div class="bg-white rounded-4 p-4 shadow-sm h-100 service-card">
-                        <div class="bg-sage rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-shield-virus fs-4 text-dark"></i>
-                        </div>
-                        <h5 class="fw-bold">Infection &amp; STD Care</h5>
-                        <p class="text-muted mb-0">Confidential care for skin infections and STDs.</p>
-                    </div>
-                </a>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -647,27 +569,6 @@
                 </figure>
             </div>
         </div>
-        {% if before_after %}
-        <div class="ba-section mt-5" id="results">
-            <h3 class="text-center fw-bold h4 mb-1">Patient Results</h3>
-            <p class="text-muted text-center small mb-4">Shared with each patient's written consent. Results vary from person to person.</p>
-            <div class="row g-4 justify-content-center">
-                {% for item in before_after %}
-                <div class="col-md-6 col-lg-4">
-                    <figure class="ba-card mb-0">
-                        <div class="ba-pair">
-                            <div class="ba-half"><img src="{{ item.before }}" alt="Before: {{ item.alt }}" loading="lazy"><span class="ba-tag">Before</span></div>
-                            <div class="ba-half"><img src="{{ item.after }}" alt="After: {{ item.alt }}" loading="lazy"><span class="ba-tag">After</span></div>
-                        </div>
-                        <figcaption class="gallery-caption"{% if item.title_hi %} data-hi="{{ item.title_hi }}"{% endif %}>{{ item.title }}</figcaption>
-                    </figure>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% else %}
-        <p class="text-muted small text-center mt-4 mb-0">Before-and-after treatment photos will be added with written patient consent.</p>
-        {% endif %}
     </div>
 </section>
 
@@ -987,14 +888,20 @@
                                 <label class="form-label" for="apptConcern" data-i18n="book.concern">Concern</label>
                                 <select class="form-select" id="apptConcern" name="concern" required>
                                     <option value="" selected disabled>Select concern</option>
+                                    <option>Dermatology consultation</option>
                                     <option>Acne / pimples</option>
-                                    <option>Pigmentation / melasma</option>
-                                    <option>Hair loss</option>
+                                    <option>Melasma / pigmentation</option>
+                                    <option>Acne scars</option>
                                     <option>Laser hair reduction</option>
-                                    <option>Skin allergy / infection</option>
-                                    <option>Aesthetic / anti-ageing</option>
-                                    <option>Dermato-surgery</option>
-                                    <option>General skin check</option>
+                                    <option>Laser tattoo removal</option>
+                                    <option>Carbon facial / rejuvenation</option>
+                                    <option>Chemical peel</option>
+                                    <option>Botox / fillers / threads</option>
+                                    <option>PRP / GFC hair</option>
+                                    <option>Hair transplant</option>
+                                    <option>Mole / cyst / nail surgery</option>
+                                    <option>Vitiligo surgery</option>
+                                    <option>Skin infection / STD care</option>
                                     <option>Other</option>
                                 </select>
                             </div>
@@ -1036,7 +943,7 @@
                     <li><a href="#home" class="text-light text-decoration-none opacity-75 hover-text-sage">Home</a></li>
                     <li><a href="#about" class="text-light text-decoration-none opacity-75 hover-text-sage">About</a></li>
                     <li><a href="#doctors" class="text-light text-decoration-none opacity-75 hover-text-sage">Our Doctors</a></li>
-                    <li><a href="#services" class="text-light text-decoration-none opacity-75 hover-text-sage">Services</a></li>
+                    <li><a href="#services" class="text-light text-decoration-none opacity-75 hover-text-sage">Treatments</a></li>
                     <li><a href="#faq" class="text-light text-decoration-none opacity-75 hover-text-sage">FAQ</a></li>
                     <li><a href="#book" class="text-light text-decoration-none opacity-75 hover-text-sage">Book Appointment</a></li>
                     <li><a href="/chatbot" class="text-light text-decoration-none opacity-75 hover-text-sage">AI Bot</a></li>

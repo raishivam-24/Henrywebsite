@@ -18,14 +18,14 @@
         <div class="d-flex align-items-center gap-2">
             <button type="button" class="ui-chip" data-lang-btn="en" aria-pressed="true">EN</button>
             <button type="button" class="ui-chip" data-lang-btn="hi" aria-pressed="false">हिं</button>
-            <a href="/#services" class="btn btn-sm btn-sage rounded-pill">All services</a>
+            <a href="/#services" class="btn btn-sm btn-sage rounded-pill">All treatments</a>
         </div>
     </div>
 </nav>
 
 <section class="py-5 bg-sage-light" style="padding-top: 7rem !important;">
     <div class="container" style="max-width: 820px;">
-        <p class="text-muted small mb-2"><a href="/" class="text-decoration-none text-muted">Home</a> / <a href="/#services" class="text-decoration-none text-muted">Services</a> / <span data-hi="{{ hi.title }}">{{ treatment.title }}</span></p>
+        <p class="text-muted small mb-2"><a href="/" class="text-decoration-none text-muted">Home</a> / <a href="/#services" class="text-decoration-none text-muted">Treatments</a> / <span data-hi="{{ hi.title }}">{{ treatment.title }}</span></p>
         <h1 class="fw-bold mb-3" data-hi="{{ hi.title }}">{{ treatment.title }}</h1>
         <p class="lead text-muted" data-hi="{{ hi.summary }}">{{ treatment.summary }}</p>
         <div class="bg-sage mb-4" style="width: 60px; height: 4px;"></div>
@@ -62,6 +62,39 @@
         </div>
 
         <p class="small text-muted mb-4">Exact plan, number of sessions and fee are confirmed after an in-person consultation. This page is general information only — not medical advice.</p>
+
+        {% if results %}
+        <div class="mb-5">
+            <h2 class="h5 fw-bold mb-3">Results</h2>
+            <p class="small text-muted mb-3">Photographs from the clinic. Results vary from person to person.</p>
+            <div class="tx-results-grid">
+                {% for item in results %}
+                <figure class="result-card mb-0">
+                    <img src="{{ item.src }}" alt="{{ item.alt }}" loading="lazy">
+                    <figcaption class="result-caption" data-hi="{{ item.title_hi }}">{{ item.title }}</figcaption>
+                </figure>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if related %}
+        <div class="mb-5">
+            <h2 class="h5 fw-bold mb-3">Related treatments</h2>
+            <div class="row g-3">
+                {% for t in related %}
+                <div class="col-md-6">
+                    <a href="/treatments/{{ t.slug }}" class="text-decoration-none text-dark">
+                        <div class="bg-white rounded-4 shadow-sm p-3 h-100">
+                            <p class="fw-semibold mb-1"{% if related_hi.get(t.slug) %} data-hi="{{ related_hi[t.slug].title }}"{% endif %}>{{ t.title }}</p>
+                            <p class="small text-muted mb-0">{{ t.sessions }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
 
         <div class="d-flex flex-wrap gap-2">
             <a href="/#book" class="btn btn-sage btn-lg rounded-pill px-4">Book Appointment</a>
